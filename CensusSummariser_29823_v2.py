@@ -98,10 +98,10 @@ class CensusSummariser:
                             columns = "C_SEX_NAME", aggfunc='sum')
 
         # save summaries
-        sex_summary.to_csv('sex_summary_'+ local_authority +'.csv')  
-        age_summary.to_csv('age_summary_'+ local_authority +'.csv') 
-        eth_summary.to_csv('eth_summary_'+ local_authority +'.csv')  
-        age_sex_pivot_table.to_csv('pivot_summary_'+ local_authority +'.csv')
+        sex_summary.to_csv('Stage1Outputs/Census_sex_summary_'+ local_authority +'.csv')  
+        age_summary.to_csv('Stage1Outputs/Census_age_summary_'+ local_authority +'.csv') 
+        eth_summary.to_csv('Stage1Outputs/Census_eth_summary_'+ local_authority +'.csv')  
+        age_sex_pivot_table.to_csv('Stage1Outputs/Census_pivot_summary_'+ local_authority +'.csv')
         
         return age_summary, sex_summary, eth_summary, age_sex_pivot_table
     print('Census data filtered')
