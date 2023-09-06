@@ -19,7 +19,7 @@ import numpy as np
 
 #os.chdir('your path')
 
-### Stage 1 - Run Referral Summariser
+### Step 1 - Run Referral Summariser
 
 # Import module
 import ReferralSummariser_2923_v4 
@@ -42,7 +42,7 @@ GPdata_csv_url = 'https://files.digital.nhs.uk/19/AADF93/gp-reg-pat-prac-all.csv
 # Download the additional CSV data and store it
 Datasummariser(csv_file_path).download_GPdata_csv(GPdata_csv_url)
 
-### Stage 2 - Run Census Summariser
+### Step 2 - Run Census Summariser
 
 #Import module
 import CensusSummariser_29823_v2  
