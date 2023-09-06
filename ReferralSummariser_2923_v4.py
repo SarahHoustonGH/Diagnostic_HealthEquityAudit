@@ -94,6 +94,10 @@ class Datasummariser:
         
         self.ConvertPostcodeIMD()
 
+        # make the outputs folder
+        if not os.path.exists("Stage1Outputs"):
+            os.makedirs("Stage1Outputs")
+
         ## Merge referral file with IMD file and return it
         self.mergedata = pd.merge(self.data, self.PostcodeIMD, on='Postcode')
 
@@ -126,30 +130,30 @@ class Datasummariser:
                # count age data based on range
                age_summary = modality_data["Age_range"].value_counts().reset_index()
                age_summary.columns = ["Age_range", "Count"]
-               age_summary.to_csv(f"Stage1Outputs/{output_prefix}_{modality}_age_summary.csv", index=False)
+               age_summary.to_csv(f"Stage1Outputs/{output_prefix[6:]}_{modality}_age_summary.csv", index=False)
                 
                 #count referrals by gender of patient
                gender_summary = modality_data["Patient_Gender"].value_counts().reset_index()
                gender_summary.columns = ["Patient_Gender", "Count"]
-               gender_summary.to_csv(f"Stage1Outputs/{output_prefix}_{modality}_gender_summary.csv", index=False)
+               gender_summary.to_csv(f"Stage1Outputs/{output_prefix[6:]}_{modality}_gender_summary.csv", index=False)
                 
                 #count referrals by ethnicity of patient
                ethnicity_summary = modality_data["ETHNIC GROUP"].value_counts().reset_index()
                ethnicity_summary.columns = ["ETHNIC GROUP", "Count"]
-               ethnicity_summary.to_csv(f"Stage1Outputs/{output_prefix}_{modality}_ethnicity_summary.csv", index=False)
+               ethnicity_summary.to_csv(f"Stage1Outputs/{output_prefix[6:]}_{modality}_ethnicity_summary.csv", index=False)
 
                 #count referrals by IMD decile of patient
                IMD_summary = modality_data["IMD Decile"].value_counts().reset_index()
                IMD_summary.columns = ["IMD Decile", "Count"]
-               IMD_summary.to_csv(f"Stage1Outputs/{output_prefix}_{modality}_IMD_summary.csv", index=False)
+               IMD_summary.to_csv(f"Stage1Outputs/{output_prefix[6:]}_{modality}_IMD_summary.csv", index=False)
 
                 #count referrals by GP practice of patient
                IMD_summary = modality_data["Patient GP"].value_counts().reset_index()
                IMD_summary.columns = ["Patient GP", "Count"]
-               IMD_summary.to_csv(f"Stage1Outputs/{output_prefix}_{modality}_GPCode_summary.csv", index=False)
+               IMD_summary.to_csv(f"Stage1Outputs/{output_prefix[6:]}_{modality}_GPCode_summary.csv", index=False)
 
         #Write merged data to another file for future use
-        self.fulldata.to_csv(f"Stage1Outputs/{output_prefix}_Merged.csv", index=False)
+        self.fulldata.to_csv(f"Stage1Outputs/{output_prefix[6:]}_Merged.csv", index=False)
 
         print("Complete")
 

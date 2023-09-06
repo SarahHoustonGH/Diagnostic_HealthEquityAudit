@@ -17,7 +17,7 @@ import numpy as np
 
 # Set wd
 
-os.chdir('C:\\Users\\sarah.houston\OneDrive - UCLPartners\\Other\\Desktop\\Project - Code Building')
+#os.chdir('your path')
 
 ### Stage 1 - Run Referral Summariser
 
@@ -26,7 +26,7 @@ import ReferralSummariser_2923_v4
 from ReferralSummariser_2923_v4 import Datasummariser
 
 #List of CSV file paths
-csv_files = ["CDCReferralDummy.csv", "ReferralDummy.csv"]  # Replace with actual paths
+csv_files = ["Data/CDCReferralDummy.csv", "Data/ReferralDummy.csv"]  # Replace with actual paths
         
 for csv_file_path in csv_files:
     # Extract the filename without extension
