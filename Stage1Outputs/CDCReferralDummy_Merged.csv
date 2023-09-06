@@ -1,0 +1,135 @@
+RequestDate_Orig,Exam Date,Referral Source,Primary_Term1,Modality,Referral Type Description,CCG of GP Practice,Patient GP,Age,Patient_Gender,Ethnicity_Code,Ethnicity Description,Postcode,GP_Postcode,LSOA Name,IMD Rank,IMD Decile,Ethnicity,ETHNIC GROUP
+17/06/2023,18/06/2023,1 ARCADIAN GARDENS SURGERY #,Plain x-ray NEC,X,GP,93C,F85034,24,Male,99,Unknown,N10 3TN,,Haringey 022B,27449,9,,Unknown
+25/03/2023,29/03/2023,QUEENSWOOD MEDICAL PRACTICE #,Plain x-ray NEC,X,GP,93C,F83008,84,Male,99,Unknown,N10 3TN,,Haringey 022B,27449,9,,Unknown
+20/11/2022,21/11/2022,BARNET GENERAL HOSPITAL ,Plain x-ray NEC,X,GP,93C,F83039,21,Male,99,Unknown,N10 3TN,,Haringey 022B,27449,9,,Unknown
+17/02/2023,18/02/2023,THE VILLAGE PRACTICE #,Plain x-ray NEC,X,GP,93C,D9T4W,95,Male,99,Unknown,N10 3TN,,Haringey 022B,27449,9,,Unknown
+10/05/2023,13/05/2023,22 CHESHIRE ROAD#,Plain x-ray NEC,X,GP,93C,F85031,39,Male,99,Unknown,N10 3TN,,Haringey 022B,27449,9,,Unknown
+13/10/2022,16/10/2022,COCKFOSTERS MEDICAL CENTRE#,Plain x-ray NEC,X,GP,93C,F85701,80,Male,99,Unknown,N10 3TN,,Haringey 022B,27449,9,,Unknown
+27/07/2023,01/08/2023,JS MED PRCT 107 PHILIP LANE #,Plain x-ray NEC,X,GP,93C,O0H1S,30,Male,99,Unknown,N15 3TR,,Haringey 027A,15502,5,,Unknown
+22/12/2022,25/12/2022,157 Stroud Green Rd Med Pract #,Plain x-ray NEC,X,GP,93C,F85642,71,Male,99,Unknown,N15 3JX,,Haringey 027D,10638,4,,Unknown
+30/10/2022,03/11/2022,NORTH MIDDLESEX HOSPITAL,US,U,GP,93C,F85046,33,Unknown,99,Unknown,E5 9FU,,Hackney 004D,6317,2,,Unknown
+05/11/2022,06/11/2022,Fernlea Surgery #,US,U,GP,93C,F83057,59,Male,99,Unknown,N15 4FA,,Haringey 024C,10051,4,,Unknown
+08/06/2023,13/06/2023,TB SERVICES $,Plain x-ray NEC,X,GP,93C,F85623,36,Female,99,Unknown,N15 4WZ,,Haringey 031D,10897,4,,Unknown
+21/01/2023,23/01/2023,RITCHIE STREET GROUP PRAC #,Plain x-ray NEC,X,GP,93C,F83681,44,Unknown,99,Unknown,N15 3TA,,Haringey 027A,15502,5,,Unknown
+27/07/2023,01/08/2023,RUTLAND HOUSE SURGERY #,US,U,GP,93C,V81999,95,Female,H,Asian - Indian,N15 3LJ,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+16/01/2023,20/01/2023,HIGHBURY GRANGE HEALTH CTR. #,US,U,GP,93C,Y03035,81,Female,H,Asian - Indian,N15 3LJ,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+05/05/2023,09/05/2023,140 HOLLOWAY ROAD #,US,U,GP,93C,F85020,96,Female,H,Asian - Indian,N15 3LJ,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+29/11/2022,01/12/2022,HAVERGAL SURGERY #,US,U,GP,93C,F85002,80,Female,H,Asian - Indian,N15 3LJ,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+26/03/2023,27/03/2023,Lordship Lane Primary Care Hea $,US,U,GP,93C,F85008,16,Female,H,Asian - Indian,N15 3LJ,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+16/02/2023,19/02/2023,CHRISTCHURCH HALL SURGERY #,US,U,GP,93C,F85625,98,Female,H,Asian - Indian,N15 3LJ,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+16/11/2022,21/11/2022,ISLINGTON GP FEDERATION ENT GYNAE #,US,U,GP,93C,F85687,34,Female,H,Asian - Indian,N15 3TR,,Haringey 027A,15502,5,Asian or Asian British - Indian,Asian
+24/05/2023,27/05/2023,CLINIC 4B $,US,U,GP,93C,F83664,46,Female,H,Asian - Indian,N15 3JA,,Haringey 023B,9806,3,Asian or Asian British - Indian,Asian
+09/03/2023,10/03/2023,MSK BOUNDS GREEN SERVICE #,Plain x-ray NEC,X,GP,93C,F85030,87,Unknown,H,Asian - Indian,N15 3DR,,Haringey 019C,8908,3,Asian or Asian British - Indian,Asian
+07/04/2023,10/04/2023,BINGFIELD PRIMARY CARE CR #,US,U,GP,93C,Y00316,43,Unknown,H,Asian - Indian,N15 4HB,,Haringey 031D,10897,4,Asian or Asian British - Indian,Asian
+07/10/2022,11/10/2022,THEATRES !,US,U,GP,93C,F85028,43,Male,H,Asian - Indian,N15 3SL,,Haringey 027D,10638,4,Asian or Asian British - Indian,Asian
+10/06/2023,11/06/2023,ROYAL FREE HOSPITAL,Plain x-ray NEC,X,GP,93C,F83045,60,Female,H,Asian - Indian,E5 9BH,,Hackney 004D,6317,2,Asian or Asian British - Indian,Asian
+04/09/2022,06/09/2022,ST. JOHNS WAY MEDICAL CTR #,Plain x-ray NEC,X,GP,93C,F85688,94,Male,C,White - Other,N15 4HT,,Haringey 024A,4260,2,White - Any other White background,White
+14/04/2023,15/04/2023,HANLEY PRIMARY CARE CENTRE #,Plain x-ray NEC,X,GP,93C,F83660,31,Male,C,White - Other,N15 4HT,,Haringey 024A,4260,2,White - Any other White background,White
+03/03/2023,07/03/2023,WESTBURY MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,I1Z8L,22,Male,C,White - Other,N15 4HT,,Haringey 024A,4260,2,White - Any other White background,White
+20/08/2022,21/08/2022,STOCKWELL LODGE MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,F85063,59,Male,C,White - Other,N15 4HT,,Haringey 024A,4260,2,White - Any other White background,White
+12/01/2023,13/01/2023,HIGHGATE GROUP PRACTICE #,Plain x-ray NEC,X,GP,93C,Y03135,34,Male,C,White - Other,N15 4HT,,Haringey 024A,4260,2,White - Any other White background,White
+30/05/2023,01/06/2023,WOMEN'S DIAGNOSTIC UNIT !,Plain x-ray NEC,X,GP,93C,F85032,88,Male,C,White - Other,N15 4HT,,Haringey 024A,4260,2,White - Any other White background,White
+30/07/2023,02/08/2023,AMBULATORY CARE !,Plain x-ray NEC,X,GP,93C,E82063,86,Male,C,White - Other,N15 3ED,,Haringey 019C,8908,3,White - Any other White background,White
+14/02/2023,18/02/2023,1 GROVE ROAD #,Plain x-ray NEC,X,GP,93C,E82081,76,Male,C,White - Other,E5 9AD,,Hackney 004E,6162,2,White - Any other White background,White
+04/02/2023,05/02/2023,SPUR ROAD SURGERY#,US,U,GP,93C,F85014,54,Unknown,C,White - Other,E5 8SD,,Hackney 029A,7202,3,White - Any other White background,White
+10/08/2022,14/08/2022,4 PECKWATER STREET #,Plain x-ray NEC,X,GP,93C,F85013,75,Female,C,White - Other,N15 3EJ,,Haringey 019C,8908,3,White - Any other White background,White
+03/12/2022,07/12/2022,The Junction Medical Practice#,US,U,GP,93C,E83034,90,Male,C,White - Other,N10 3LH,,Haringey 021D,27147,9,White - Any other White background,White
+11/10/2022,16/10/2022,GREEN CEDARS MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,E82085,59,Unknown,C,White - Other,N15 3EB,,Haringey 023C,5261,2,White - Any other White background,White
+24/09/2022,26/09/2022,WEST GREEN SURGERY #,US,U,GP,93C,F83015,98,Female,M,Black - Caribbean,N15 4EB,,Haringey 024C,10051,4,Black or Black British - Caribbean,Black
+05/08/2022,08/08/2022,MITCHISON ROAD SURGERY #,US,U,GP,93C,Y01066,57,Female,M,Black - Caribbean,N15 4EB,,Haringey 024C,10051,4,Black or Black British - Caribbean,Black
+03/09/2022,06/09/2022,THE STAUNTON GROUP PRACTICE #,US,U,GP,93C,Z3D3X,94,Female,M,Black - Caribbean,N15 4EB,,Haringey 024C,10051,4,Black or Black British - Caribbean,Black
+17/11/2022,22/11/2022,THE MUSWELL HILL PRACTICE #,US,U,GP,93C,T5U8N,92,Female,M,Black - Caribbean,N15 4EB,,Haringey 024C,10051,4,Black or Black British - Caribbean,Black
+04/02/2023,08/02/2023,THE ALEXANDRA SURGERY #,US,U,GP,93C,F85066,72,Female,M,Black - Caribbean,N15 4EB,,Haringey 024C,10051,4,Black or Black British - Caribbean,Black
+23/09/2022,25/09/2022,PATHOLOGY $,US,U,GP,93C,Z8G3I,27,Female,M,Black - Caribbean,N15 4EB,,Haringey 024C,10051,4,Black or Black British - Caribbean,Black
+27/01/2023,30/01/2023,CLINIC 3B $,US,U,GP,93C,F85029,41,Female,M,Black - Caribbean,N15 3JY,,Haringey 027D,10638,4,Black or Black British - Caribbean,Black
+26/10/2022,28/10/2022,Bruce Grove Primary HCC #,US,U,GP,93C,F85023,24,Female,M,Black - Caribbean,N15 3DJ,,Haringey 019C,8908,3,Black or Black British - Caribbean,Black
+15/04/2023,17/04/2023,ST ANNS ROAD LAURELS SURGERY #,Plain x-ray NEC,X,GP,93C,F81072,85,Unknown,M,Black - Caribbean,N15 3ZW,,Haringey 027A,15502,5,Black or Black British - Caribbean,Black
+05/05/2023,10/05/2023,331 CAMDEN ROAD #,US,U,GP,93C,F83060,51,Male,M,Black - Caribbean,N10 3QD,,Haringey 022B,27449,9,Black or Black British - Caribbean,Black
+29/10/2022,30/10/2022,ST.PETER'S STREET MED.CTR #,Plain x-ray NEC,X,GP,93C,E83639,97,Female,M,Black - Caribbean,N15 3ND,,Haringey 019C,8908,3,Black or Black British - Caribbean,Black
+01/04/2023,06/04/2023,THE VALE PRACTICE #,Plain x-ray NEC,X,GP,93C,F85669,83,Male,P,Black - Other,N15 3EA,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+27/09/2022,01/10/2022,THE ANDOVER MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,F83056,29,Male,P,Black - Other,N15 3EA,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+21/12/2022,23/12/2022,THE BRIDGE HOUSE MP #,Plain x-ray NEC,X,GP,93C,F83673,21,Male,P,Black - Other,N15 3EA,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+19/02/2023,23/02/2023,LAWRENCE PRACTICE #,Plain x-ray NEC,X,GP,93C,E82042,49,Male,P,Black - Other,N15 3EA,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+14/12/2022,15/12/2022,ELIZABETH AVE GROUP PRAC. #,Plain x-ray NEC,X,GP,93C,R3H6S,64,Male,P,Black - Other,N15 3EA,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+22/11/2022,26/11/2022,EAST FINCHLEY MED CTR #,Plain x-ray NEC,X,GP,93C,F85035,55,Male,P,Black - Other,N15 3EA,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+26/08/2022,29/08/2022,CLINIC 4A $,Plain x-ray NEC,X,GP,93C,F85634,93,Male,P,Black - Other,N15 3NJ,,Haringey 019C,8908,3,Black or Black British - Any other Black background,Black
+21/10/2022,25/10/2022,ARNOS GROVE MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,X6I6K,44,Male,P,Black - Other,N15 5AF,,Haringey 024A,4260,2,Black or Black British - Any other Black background,Black
+06/04/2023,09/04/2023,RIVER PLACE HEALTH CENTRE #,US,U,GP,93C,F85675,43,Male,P,Black - Other,N15 4LH,,Haringey 024A,4260,2,Black or Black British - Any other Black background,Black
+26/10/2022,31/10/2022,PARLIAMENT HILL SURGERY #,Plain x-ray NEC,X,GP,93C,Y05330,23,Unknown,P,Black - Other,E5 9BE,,Hackney 004D,6317,2,Black or Black British - Any other Black background,Black
+14/12/2022,15/12/2022,SOMERS TOWN MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,F85017,83,Female,P,Black - Other,E5 8SB,,Hackney 029A,7202,3,Black or Black British - Any other Black background,Black
+19/06/2023,20/06/2023,ANTE-NAT.CLINIC $,US,U,GP,93C,E83039,85,Male,P,Black - Other,N15 3HP,,Haringey 027D,10638,4,Black or Black British - Any other Black background,Black
+02/02/2023,05/02/2023,GOODINGE HEALTH CENTRE #,US,U,GP,93C,Y01655,59,Female,Z,Declined to state,E5 9AS,,Hackney 006C,12316,4,Unknown/Declined to state,Unknown
+01/10/2022,02/10/2022,THE RISE GROUP (HORNSEY RISE) #,US,U,GP,93C,F83666,97,Female,Z,Declined to state,E5 9AS,,Hackney 006C,12316,4,Unknown/Declined to state,Unknown
+12/04/2023,15/04/2023,BOUNDS GREEN GROUP PRACTISE #,US,U,GP,93C,E82079,38,Female,Z,Declined to state,E5 9AS,,Hackney 006C,12316,4,Unknown/Declined to state,Unknown
+23/01/2023,28/01/2023,HORNSEY CENTRAL $,US,U,GP,93C,E82123,77,Female,Z,Declined to state,E5 9AS,,Hackney 006C,12316,4,Unknown/Declined to state,Unknown
+27/06/2023,01/07/2023,CROUCH HALL ROAD SURGERY #,US,U,GP,93C,E82115,33,Female,Z,Declined to state,E5 9AS,,Hackney 006C,12316,4,Unknown/Declined to state,Unknown
+06/01/2023,09/01/2023,CLINIC 4C $,US,U,GP,93C,L9M0B,86,Female,Z,Declined to state,E5 9AS,,Hackney 006C,12316,4,Unknown/Declined to state,Unknown
+02/05/2023,06/05/2023,ISLINGTON CENTRAL MED CENTRE #,US,U,GP,93C,F85016,40,Female,Z,Declined to state,N15 3HD,,Haringey 027D,10638,4,Unknown/Declined to state,Unknown
+02/09/2022,03/09/2022,Community Paed Tynemouth Rd Med Centre #,US,U,GP,93C,F85700,56,Female,Z,Declined to state,E5 8RG,,Hackney 006D,11196,4,Unknown/Declined to state,Unknown
+22/03/2023,26/03/2023,MERCERS WARD !,Plain x-ray NEC,X,GP,93C,D6Q8D,63,Female,Z,Declined to state,N15 4HN,,Haringey 024A,4260,2,Unknown/Declined to state,Unknown
+28/09/2022,02/10/2022,RIDGMOUNT PRACTICE #,US,U,GP,93C,F83683,96,Unknown,Z,Declined to state,N15 4HB,,Haringey 031D,10897,4,Unknown/Declined to state,Unknown
+17/03/2023,18/03/2023,GROVEMEAD MEDICAL CENTRE #,US,U,GP,93C,F83053,28,Male,Z,Declined to state,N15 3NX,,Haringey 019C,8908,3,Unknown/Declined to state,Unknown
+25/05/2023,28/05/2023,KILLICK STREET HEALTH CTR #,Plain x-ray NEC,X,GP,93C,G81044,98,Female,Z,Declined to state,N15 4XD,,Haringey 031D,10897,4,Unknown/Declined to state,Unknown
+28/02/2023,03/03/2023,BARRETTS GROVE SURGERY #,Plain x-ray NEC,X,GP,93C,F84119,47,Female,S,Any other ethnic group,E5 9AD,,Hackney 004E,6162,2,Other Ethnic Groups - Any other ethnic group,Other
+07/03/2023,09/03/2023,CLINIC 3D $,US,U,GP,93C,F85072001,81,Male,S,Any other ethnic group,N15 4YX,,Haringey 031D,10897,4,Other Ethnic Groups - Any other ethnic group,Other
+19/04/2023,20/04/2023,Tynemouth Medical Practice #,Plain x-ray NEC,X,GP,93C,F85065,37,Female,S,Any other ethnic group,N15 4EE,,Haringey 024A,4260,2,Other Ethnic Groups - Any other ethnic group,Other
+18/05/2023,22/05/2023,SOMERSET GDNS FAM HTH CTR #,US,U,GP,93C,F83680,80,Male,S,Any other ethnic group,N15 4ZJ,,Haringey 031D,10897,4,Other Ethnic Groups - Any other ethnic group,Other
+04/05/2023,07/05/2023,Grenoble Gardens Surgery #,US,U,GP,93C,F85678,52,Unknown,G,Mixed - Other,N15 3RL,,Haringey 027D,10638,4,Mixed - Any other mixed background,Mixed
+01/01/2023,05/01/2023,49 HIGHBURY NEW PARK #,Plain x-ray NEC,X,GP,93C,F85071,63,Female,G,Mixed - Other,E5 9BE,,Hackney 004D,6317,2,Mixed - Any other mixed background,Mixed
+10/08/2022,14/08/2022,FOREST PRIMARY CARE CTR #,US,U,GP,93C,F83671,73,Male,G,Mixed - Other,N15 3ES,,Haringey 019D,5776,2,Mixed - Any other mixed background,Mixed
+28/08/2022,30/08/2022,CITY ROAD MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,F83004,33,Female,G,Mixed - Other,N15 3ZE,,Haringey 027D,10638,4,Mixed - Any other mixed background,Mixed
+19/09/2022,21/09/2022,DOWSETT ROAD SURGERY #,US,U,GP,93C,E82027,93,Male,G,Mixed - Other,N15 3XF,,Islington 008A,14242,5,Mixed - Any other mixed background,Mixed
+08/05/2023,10/05/2023,CHARLTON HOUSE MED CTR #,Plain x-ray NEC,X,GP,93C,F85004,29,Unknown,B,White - Irish,N15 3RP,,Haringey 027D,10638,4,White - Irish,White
+21/07/2023,25/07/2023,192 COLNEY HATCH LANE #,US,U,GP,93C,F85705,74,Male,B,White - Irish,N15 3RU,,Haringey 027A,15502,5,White - Irish,White
+26/08/2022,29/08/2022,CLINIC 3A $,Plain x-ray NEC,X,GP,93C,F83002,87,Female,B,White - Irish,N15 3YQ,,Haringey 031D,10897,4,White - Irish,White
+27/05/2023,01/06/2023,HOLBORN MEDICAL CENTRE #,US,U,GP,93C,F83032,17,Male,B,White - Irish,N15 4UN,,Haringey 031D,10897,4,White - Irish,White
+13/12/2022,15/12/2022,CONNAUGHT SURGERY,Plain x-ray NEC,X,GP,93C,E83045,54,Female,B,White - Irish,N15 3RX,,Haringey 027A,15502,5,White - Irish,White
+11/09/2022,16/09/2022,HORNSEY PARK SURGERY #,US,U,GP,93C,E83017,40,Unknown,F,Mixed - White and Asian,N15 3HL,,Haringey 027D,10638,4,Mixed - White and Asian,Mixed
+05/04/2023,07/04/2023,MDU $,Plain x-ray NEC,X,GP,93C,F83674,21,Female,F,Mixed - White and Asian,E5 9AP,,Hackney 004D,6317,2,Mixed - White and Asian,Mixed
+14/11/2022,17/11/2022,ROMAN WAY MEDICAL CENTRE #,US,U,GP,93C,E82024,80,Male,F,Mixed - White and Asian,N15 3JS,,Haringey 027D,10638,4,Mixed - White and Asian,Mixed
+17/09/2022,20/09/2022,TB CLINIC $,Plain x-ray NEC,X,GP,93C,F84036,90,Female,F,Mixed - White and Asian,N15 5AJ,,Haringey 024A,4260,2,Mixed - White and Asian,Mixed
+05/03/2023,06/03/2023,BRUNSWICK MEDICAL #,US,U,GP,93C,E87677,42,Male,F,Mixed - White and Asian,N15 4SN,,Haringey 024B,4272,2,Mixed - White and Asian,Mixed
+10/07/2023,13/07/2023,MILDMAY MEDICAL PRACTICE #,Plain x-ray NEC,X,GP,93C,E82133,53,Unknown,R,Chinese,N15 3TL,,Haringey 027A,15502,5,Other Ethnic Groups - Chinese,Other
+08/12/2022,09/12/2022,KEATS SURGERY #,Plain x-ray NEC,X,GP,93C,F83059,75,Female,R,Chinese,E5 8SD,,Hackney 029A,7202,3,Other Ethnic Groups - Chinese,Other
+27/11/2022,28/11/2022,RAVENSCROFT MEDICAL CTR #,US,U,GP,93C,E83638,26,Male,R,Chinese,N15 4LJ,,Haringey 024A,4260,2,Other Ethnic Groups - Chinese,Other
+08/10/2022,10/10/2022,TOTTENHAM HALE MEDICAL PRACTICE#,Plain x-ray NEC,X,GP,93C,F83055,94,Female,R,Chinese,N15 3LL,,Haringey 019C,8908,3,Other Ethnic Groups - Chinese,Other
+18/06/2023,19/06/2023,GOWER STREET PRACTICE #,US,U,GP,93C,F85697,35,Unknown,R,Chinese,N15 3RF,,Haringey 027D,10638,4,Other Ethnic Groups - Chinese,Other
+28/08/2022,29/08/2022,GILLAN HOUSE SURGERY #,US,U,GP,93C,F85007,41,Unknown,K,Asian - Bangladeshi,N15 3XH,,Haringey 031D,10897,4,Asian or Asian British - Bangladeshi,Asian
+14/11/2022,19/11/2022,THALASEMIA WARD $,Plain x-ray NEC,X,GP,93C,F83010,31,Female,K,Asian - Bangladeshi,N10 3QF,,Haringey 022B,27449,9,Asian or Asian British - Bangladeshi,Asian
+15/05/2023,20/05/2023,HAEMOTOLOGY $,US,U,GP,93C,F86607,98,Male,K,Asian - Bangladeshi,N15 4HG,,Haringey 024A,4260,2,Asian or Asian British - Bangladeshi,Asian
+07/06/2023,12/06/2023,UCLH OUTSOURCED,Plain x-ray NEC,X,GP,93C,Y02674,86,Unknown,K,Asian - Bangladeshi,N15 3XX,,Haringey 031D,10897,4,Asian or Asian British - Bangladeshi,Asian
+16/07/2023,20/07/2023,MUSEUM PRACTICE #,US,U,GP,93C,V81997,77,Male,K,Asian - Bangladeshi,N15 3AZ,,Haringey 027A,15502,5,Asian or Asian British - Bangladeshi,Asian
+15/06/2023,18/06/2023,CASUALTY,Plain x-ray NEC,X,GP,93C,,29,Unknown,E,Mixed - White and Black African,N15 3LD,,Haringey 019C,8908,3,Mixed - White and Black African,Mixed
+26/01/2023,29/01/2023,ARCHWAY MEDICAL CENTRE #,US,U,GP,93C,F85067,70,Male,E,Mixed - White and Black African,N15 3SL,,Haringey 027D,10638,4,Mixed - White and Black African,Mixed
+09/06/2023,10/06/2023,COYLE WARD !,Plain x-ray NEC,X,GP,93C,F85052,90,Female,E,Mixed - White and Black African,N15 5AL,,Haringey 024A,4260,2,Mixed - White and Black African,Mixed
+03/05/2023,08/05/2023,COVENT GARDEN MEDICAL CENTRE #,US,U,GP,93C,F83022,53,Unknown,E,Mixed - White and Black African,N15 5AG,,Haringey 024A,4260,2,Mixed - White and Black African,Mixed
+02/06/2023,04/06/2023,GROSVENOR ROAD SURGERY #,Plain x-ray NEC,X,GP,93C,F85058,28,Female,E,Mixed - White and Black African,N15 4ZS,,Haringey 031D,10897,4,Mixed - White and Black African,Mixed
+28/11/2022,03/12/2022,THE BEAUMONT PRACTISE #,US,U,GP,93C,J83040,51,Male,E,Mixed - White and Black African,N15 4LL,,Haringey 024A,4260,2,Mixed - White and Black African,Mixed
+11/03/2023,13/03/2023,Unknown code on SCH,US,U,GP,93C,F85069,32,Unknown,D,Mixed - White and Black Caribbean,N10 3TJ,,Haringey 021A,16855,6,Mixed - White and Black Caribbean,Mixed
+15/01/2023,20/01/2023,BETTY MANSELL WARD !,Plain x-ray NEC,X,GP,93C,F83686,75,Female,D,Mixed - White and Black Caribbean,N15 3JU,,Haringey 027D,10638,4,Mixed - White and Black Caribbean,Mixed
+06/05/2023,10/05/2023,CARLTON HOUSE SURGERY #,US,U,GP,93C,F85705001,50,Male,D,Mixed - White and Black Caribbean,N10 3QB,,Haringey 022B,27449,9,Mixed - White and Black Caribbean,Mixed
+20/03/2023,25/03/2023,PINE STREET MEDICAL CENTRE#,Plain x-ray NEC,X,GP,93C,F83007,59,Unknown,D,Mixed - White and Black Caribbean,N15 3BJ,,Haringey 026A,9360,3,Mixed - White and Black Caribbean,Mixed
+10/08/2022,15/08/2022,THE SPEEDWELL PRACTICE #,US,U,GP,93C,E83031,39,Male,D,Mixed - White and Black Caribbean,N15 4HE,,Haringey 024C,10051,4,Mixed - White and Black Caribbean,Mixed
+03/09/2022,08/09/2022,ST. GEORGES MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,E83013,72,Female,D,Mixed - White and Black Caribbean,N15 4ZW,,Haringey 031D,10897,4,Mixed - White and Black Caribbean,Mixed
+21/02/2023,22/02/2023,STUART CRESCENT HEALTH CENTRE #,Plain x-ray NEC,X,GP,93C,F85640,64,Unknown,J,Asian - Pakistani,E5 8PB,,Hackney 010A,8634,3,Asian or Asian British - Pakistani,Asian
+20/01/2023,23/01/2023,572 GREEN LANES #,US,U,GP,93C,F83052,59,Male,J,Asian - Pakistani,N15 4HR,,Haringey 024A,4260,2,Asian or Asian British - Pakistani,Asian
+13/02/2023,15/02/2023,GYNAECOLOGY ASSESSMENT UNIT $,Plain x-ray NEC,X,GP,93C,F85615,30,Female,J,Asian - Pakistani,N15 4FZ,,Haringey 024C,10051,4,Asian or Asian British - Pakistani,Asian
+11/08/2022,13/08/2022,CROWNDALE HEALTH CENTRE #,US,U,GP,93C,F84724,98,Unknown,J,Asian - Pakistani,N15 3XB,,Haringey 031D,10897,4,Asian or Asian British - Pakistani,Asian
+16/08/2022,18/08/2022,HIGHLANDS PRACTICE #,Plain x-ray NEC,X,GP,93C,I6U7Y,84,Female,J,Asian - Pakistani,N15 3LP,,Haringey 019C,8908,3,Asian or Asian British - Pakistani,Asian
+06/12/2022,10/12/2022,THE MAPLES HEALTH CENTRE #,US,U,GP,93C,E82098,70,Male,J,Asian - Pakistani,N15 4WQ,,Haringey 031D,10897,4,Asian or Asian British - Pakistani,Asian
+03/07/2023,04/07/2023,DAY TREATMENT CENTRE !,US,U,GP,93C,F83012,20,Male,A,White - British,N15 4FA,,Haringey 024C,10051,4,White - British,White
+23/08/2022,26/08/2022,THE MORRIS HOUSE GROUP PRACTICE #,Plain x-ray NEC,X,GP,93C,B1B3L,54,Female,A,White - British,N15 4ZQ,,Haringey 031D,10897,4,White - British,White
+11/02/2023,16/02/2023,MSK HORNSEY SERVICE #,US,U,GP,93C,F85019,30,Male,A,White - British,N15 3EH,,Haringey 019C,8908,3,White - British,White
+11/03/2023,13/03/2023,Regent Park Practice #,Plain x-ray NEC,X,GP,93C,E83044,45,Unknown,A,White - British,N15 3WN,,Haringey 031D,10897,4,White - British,White
+08/10/2022,11/10/2022,THE NORTHERN MEDICAL CENTRE #,Plain x-ray NEC,X,GP,93C,F85061,25,Female,L,Asian - Other,N15 3JU,,Haringey 027D,10638,4,Asian or Asian British - Any other Asian background,Asian
+14/12/2022,19/12/2022,COLPOSCOPY $,US,U,GP,93C,F85064,75,Male,L,Asian - Other,N15 4HJ,,Haringey 018D,9236,3,Asian or Asian British - Any other Asian background,Asian
+19/09/2022,21/09/2022,TOTTENHAM HEALTH CENTRE #,Plain x-ray NEC,X,GP,93C,H84020,80,Female,L,Asian - Other,N15 3XA,,Haringey 031D,10897,4,Asian or Asian British - Any other Asian background,Asian
+24/11/2022,25/11/2022,SOHO SQUARE SURGERY #,US,U,GP,93C,E83649,64,Unknown,L,Asian - Other,N15 4XS,,Haringey 031D,10897,4,Asian or Asian British - Any other Asian background,Asian
+18/11/2022,19/11/2022,MSK ST ANNS SERVICE #,Plain x-ray NEC,X,GP,93C,B6S7Y,94,Female,NS,Not Set,N15 3AF,,Haringey 019C,8908,3,,Unknown
+29/09/2022,30/09/2022,CLERKENWELL MED PRACTICE #,Plain x-ray NEC,X,GP,93C,F83652,21,Female,NS,Not Set,N15 3RU,,Haringey 027A,15502,5,,Unknown
+03/07/2023,08/07/2023,Outpatients $,US,U,GP,93C,Y02117,19,Male,NS,Not Set,N15 4XX,,Haringey 031D,10897,4,,Unknown
+30/05/2023,01/06/2023,26 WESTBURY AVENUE SURGERY #,US,U,GP,93C,F83017,54,Male,NS,Not Set,N15 3DQ,,Haringey 019C,8908,3,,Unknown
+20/11/2022,25/11/2022,MSK LORDSHIP SERVICE #,US,U,GP,93C,E83050,76,Male,N,Black - African,N15 4HB,,Haringey 031D,10897,4,Black or Black British - African,Black
+08/11/2022,11/11/2022,THE HIGH ROAD SURGERY STUART CRESCENT HC #,Plain x-ray NEC,X,GP,93C,F86026,78,Female,N,Black - African,E5 9AR,,Hackney 001C,6783,3,Black or Black British - African,Black
+04/05/2023,06/05/2023,272 HOLLOWAY ROAD #,US,U,GP,93C,K82011,95,Male,N,Black - African,N10 3LH,,Haringey 021D,27147,9,Black or Black British - African,Black
+13/08/2022,17/08/2022,MARY SEACOLE SOUTH !,Plain x-ray NEC,X,GP,93C,G83680,61,Female,N,Black - African,N15 4EN,,Haringey 024A,4260,2,Black or Black British - African,Black

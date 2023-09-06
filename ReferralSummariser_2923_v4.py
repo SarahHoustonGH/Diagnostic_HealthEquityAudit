@@ -18,7 +18,7 @@ class Datasummariser:
     def __init__(self, csv_file):
         self.data = pd.read_csv(csv_file)
         self.additional_csv_filename = "Stage1Outputs/GPdata.csv"
-        self.Ethnicity_LUT = pd.read_csv("LUT\Ethnicity_LUT.csv")
+        self.Ethnicity_LUT = pd.read_csv("LUT/Ethnicity_LUT.csv")
         self.PostcodeIMD = None
         self.mergedata = None
         self.fulldata = None
