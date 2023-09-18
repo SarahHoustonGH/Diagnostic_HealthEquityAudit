@@ -48,7 +48,7 @@ class CensusSummariser:
         self.age_sex_data = pd.read_csv(self.age_sex_csv_filename, index_col=None)
 
         # Create a new column called age range 
-        self.age_sex_data['age_range'] = pd.cut(self.age_sex_data['C2021_AGE_92'], 
+        self.age_sex_data['Age_range'] = pd.cut(self.age_sex_data['C2021_AGE_92'], 
                                    bins=[-1, 0, 19, 30, 40, 50, 60, 70, 80, 90, 91], 
                                    labels=['Total', '0-17', '18-29', '30-39',
                                             '40-49', '50-59', '60-69', '70-79', 
