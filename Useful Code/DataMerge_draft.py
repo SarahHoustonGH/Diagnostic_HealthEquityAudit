@@ -32,8 +32,8 @@ for modality in referral_modality:
         df_census.columns.values[0] = demographic
        
         # Merge the data into a single table
-        merged_df = pd.merge(df_census, df_referral, on=demographic)
-        merged_df = pd.merge(merged_df, df_cdc_referral, on=demographic)
+        merged_df = pd.merge(df_census, df_referral, on=demographic, how='outer')
+        merged_df = pd.merge(merged_df, df_cdc_referral, on=demographic, how='outer')
 
         # Calculate percentages of column totals
         for column in merged_df.columns[1:]:
