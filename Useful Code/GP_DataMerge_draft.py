@@ -1,5 +1,7 @@
 ## Combining GP datasets
 
+
+import os
 import pandas as pd
 
 # Read the CSV file
@@ -24,3 +26,18 @@ fulldata_subset = fulldata[['CODE', 'GP practice name', 'Postcode','ICB23ons',
                             'LAD21','LAD21name',
                             'ICB23','ICB23name','LSOA11','MSOA11','POSTCODE',
                             'NUMBER_OF_PATIENTS']]
+
+fulldata_subset.to_csv('Stage1Outputs/GP_Data_Map_summary.csv')
+
+#Read in GP referrals for CDC and baseline
+Ref_Data = pd.read_csv("Stage1Outputs/ReferralDummy_X_GPCode_summary.csv")
+CDC_Data = pd.read_csv("Stage1Outputs/CDCReferralDummy_X_GPCode_summary.csv")
+
+#change column headers for full data
+fulldata_subset = fulldata_subset.rename(columns={'CODE': 'Patient GP'}) 
+
+#
+GPSummaryReferralData = pd.merge(fulldata_subset, Ref_Data, on='Patient GP')
+GPSummaryReferralData = pd.merge(GPSummaryReferralData, CDC_Data, on='Patient GP')
+
+GPSummaryReferralData.to_csv('Stage1Outputs/GPSummaryReferralData_Map.csv')
