@@ -16,11 +16,6 @@ for modality in referral_modality:
         census_file = f"Stage1Outputs/Census_{demographic}_summary_Haringey.csv"
 
         # Read CSV files into Pandas DataFrames
-        #df_cdc_referral = pd.read_csv(cdc_referral_file).rename(columns={df_cdc_referral.columns[0]: demographic})
-        #df_referral = pd.read_csv(referral_file).rename(columns={df_referral.columns[0]: demographic})
-        #df_census = pd.read_csv(census_file).rename(columns={df_census.columns[0]: demographic})
-
-        # Read CSV files into Pandas DataFrames
         df_cdc_referral = pd.read_csv(cdc_referral_file)
         df_referral = pd.read_csv(referral_file)
         df_census = pd.read_csv(census_file)
