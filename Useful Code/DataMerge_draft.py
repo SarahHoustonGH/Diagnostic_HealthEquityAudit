@@ -27,7 +27,18 @@ for modality in referral_modality:
         df_referral.columns.values[1] = "Baseline_Count"
         df_census.columns.values[0] = demographic
         df_census.columns.values[1] = "Census_Count"
-       
+
+        #Assigning mapping to row names
+        name_mapping = {
+            'Asian, Asian British or Asian Welsh': 'Asian',
+            'Black, Black British, Black Welsh, Caribbean or African': 'Black',
+            'Mixed or Multiple ethnic groups': 'Mixed',
+            'Other ethnic group':'Other'
+                        }
+
+        # Replace the names in the specified column
+        df_census[demographic] = df_census[demographic].replace(name_mapping)
+
         # Merge the data into a single table
         merged_df = pd.merge(df_census, df_referral, on=demographic, how='outer')
         merged_df = pd.merge(merged_df, df_cdc_referral, on=demographic, how='outer')
@@ -38,6 +49,8 @@ for modality in referral_modality:
         # Calculate percentages of column totals
         for column in merged_df.columns[1:]:
             merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
+
+
 
         # Write merged and percentage tables to CSV
         merged_df.to_csv(f"Stage1Outputs/Merged_{modality}_{demographic}.csv", index=False)
