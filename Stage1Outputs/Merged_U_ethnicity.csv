@@ -1,4 +1,4 @@
-ethnicity,OBS_VALUE,Count,CDC_Count,OBS_VALUE_percentage,Count_percentage,CDC_Count_percentage
+ethnicity,Census_Count,Baseline_Count,CDC_Count,Census_Count_percentage,Baseline_Count_percentage,CDC_Count_percentage
 "Asian, Asian British or Asian Welsh",23081.0,,,8.735060590234413,,
 "Black, Black British, Black Welsh, Caribbean or African",46468.0,,,17.585927624756845,,
 Mixed or Multiple ethnic groups,18555.0,,,7.022184881582234,,

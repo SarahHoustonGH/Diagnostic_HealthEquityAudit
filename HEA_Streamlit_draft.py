@@ -36,7 +36,7 @@ demographic = st.radio(
 merged_referral_file_name = f"Stage1Outputs/Merged_{modality}_{demographic}.csv"        
 merged_referral_file = pd.read_csv(merged_referral_file_name)
 
-st.dataframe(merged_referral_file.head())
+st.dataframe(merged_referral_file.head(10))
 
 
 
