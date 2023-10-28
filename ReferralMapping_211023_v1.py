@@ -30,6 +30,8 @@ class ReferralMapping:
         self.fulldata_subset = fulldata[['CODE', 'GP practice name', 'Postcode', 'ICB23ons', 'LAD21', 'LAD21name',
                                     'ICB23', 'ICB23name', 'LSOA11', 'MSOA11', 'POSTCODE', 'NUMBER_OF_PATIENTS', 'IMD2019 Decile']]
         self.fulldata_subset.to_csv(os.path.join(self.data_folder, 'GP_Data_Map_summary.csv'))
+        return self.fulldata_subset
+
 
     def process_referral_and_location_data(self, referral_modalities):
         for modality in referral_modalities:

@@ -58,9 +58,25 @@ summariser.download_ethnicity_csv()
 summariser.summarise_age_sex_csv()  # Make sure this method is being called
 summariser.summarise_by_la(user_local_authority)
 
-### Step 3 - Run HEA Processor
+### Step 3 - Referral mapping
+from ReferralMapping_211023_v1 import ReferralMapping()
+
+referral_mapping = ReferralMapping()
+    
+mapping_data = referral_mapping.read_mapping_data()
+IMD_data = referral_mapping.read_IMD_data()
+registration_data = referral_mapping.read_registration_data()
+fulldata = referral_mapping.merge_mapping_and_registration(mapping_data, registration_data, IMD_data)
+referral_mapping.generate_subset(fulldata)
+    
+referral_modalities = ["X", "U"]
+referral_mapping.process_referral_and_location_data(referral_modalities)
+
+### Step 4 - Run HEA Processor
 
 from HEAProcessor_211023_v1 import HEAProcessor
 
 data_processor = HEAProcessor()
 data_processor.merge_process_data()
+data_processor.process_gp_IMD_data(user_local_authority)
+data_processor.process_pop_IMD_data(user_local_authority)
