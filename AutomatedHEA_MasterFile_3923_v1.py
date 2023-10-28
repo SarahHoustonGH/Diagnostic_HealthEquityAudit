@@ -58,4 +58,9 @@ summariser.download_ethnicity_csv()
 summariser.summarise_age_sex_csv()  # Make sure this method is being called
 summariser.summarise_by_la(user_local_authority)
 
+### Step 3 - Run HEA Processor
 
+from HEAProcessor_211023_v1 import HEAProcessor
+
+data_processor = HEAProcessor()
+data_processor.merge_process_data()

@@ -9,22 +9,10 @@ import geopandas as gpd
 from geopy.geocoders import Nominatim
 import folium
 from folium.plugins import MarkerCluster
-
-#Connect this to main code later
-local_authority = "Haringey"
-
-st.title(f'Health Equity Audit of CDC in {local_authority}')
-
-# Define the header and main text
-header_text = "Welcome to the CDC Health Equity Audit"
-main_text = (
-    "This Streamlit app allows you to visualize results produced by the HSMA5 Health Equity Audit for CDCs."
-    " Please select your modality and demographic of interest below."
-)
-
-# Display the header and main text using markdown
-st.markdown(f"## {header_text}")
-st.markdown(main_text)
+from folium import plugins
+import pandas as pd
+import json
+import requests
 
 #Create buttons in sidebar
 with st.sidebar:
@@ -44,23 +32,9 @@ with st.sidebar:
     "What demographic would you like to disaggregate by?",
     ["age", "gender", "ethnicity"])
 
-
-#Read in data
 merged_referral_file_name = f"Stage1Outputs/Merged_{modality}_{demographic}.csv"        
 merged_referral_file = pd.read_csv(merged_referral_file_name, index_col=demographic)
 merged_referral_file = merged_referral_file.fillna(value=0)
-
-count_columns = merged_referral_file.iloc[:, :3]
-percentage_columns = merged_referral_file.iloc[:, 3:6]
-
-
-st.markdown("# Data Overview - Counts")
-# Display the first 10 rows of the selected columns
-st.dataframe(count_columns.head(10).astype(int))
-
-st.markdown("# Data Overview - Percentages")
-# Display the first 10 rows of the selected columns
-st.dataframe(percentage_columns.head(10).astype(int))
 
 merged_referral_file['Population vs CDC'] = merged_referral_file[
     'Census_Count_percentage']-merged_referral_file['CDC_Count_percentage']
@@ -70,7 +44,7 @@ merged_referral_file['Baseline vs CDC'] = merged_referral_file[
 
 comparison_columns = merged_referral_file.iloc[:, 6:]
 
-st.markdown("# Data Overview - Comparison")
+st.markdown("## Data Overview - Comparison")
 # Format the DataFrame to add '%' to the values
 #formatted_df = comparison_columns.head(10).astype(int).applymap(lambda x: f"{x}%")
 
@@ -88,7 +62,7 @@ styled_df = comparison_columns.head(10).style.applymap(color_map)
 st.write(styled_df)
 
 ## Making upper/lower graphs
-st.markdown("# Equity Audit - Bar Charts")
+st.markdown("## Equity Audit - Bar Charts")
 
 ## Baseline v CDC
 
@@ -142,18 +116,3 @@ ax.legend()
 
 # Display the Matplotlib figure in Streamlit
 st.pyplot(fig)
-
-
-## Location of referral source
-
-st.markdown("# Referral Sources - Maps")
-
-# Create a Streamlit map
-st.map()
-
-# Create a Folium map
-m = folium.Map(location=[0, 0], zoom_start=2)
-st.write(m)
-
-
-#streamlit run HEA_Streamlit_draft.py

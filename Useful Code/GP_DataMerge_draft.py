@@ -29,15 +29,18 @@ fulldata_subset = fulldata[['CODE', 'GP practice name', 'Postcode','ICB23ons',
 
 fulldata_subset.to_csv('Stage1Outputs/GP_Data_Map_summary.csv')
 
+referral_modality = ["X", "U"]
+
 #Read in GP referrals for CDC and baseline
-Ref_Data = pd.read_csv("Stage1Outputs/ReferralDummy_X_GPCode_summary.csv")
-CDC_Data = pd.read_csv("Stage1Outputs/CDCReferralDummy_X_GPCode_summary.csv")
+for modality in referral_modality:
+    Ref_Data = pd.read_csv(f"Stage1Outputs/ReferralDummy_{modality}_GPCode_summary.csv")
+    CDC_Data = pd.read_csv(f"Stage1Outputs/CDCReferralDummy_{modality}_GPCode_summary.csv")
 
-#change column headers for full data
-fulldata_subset = fulldata_subset.rename(columns={'CODE': 'Patient GP'}) 
+    #change column headers for full data
+    fulldata_subset = fulldata_subset.rename(columns={'CODE': 'Patient GP'}) 
 
-#
-GPSummaryReferralData = pd.merge(fulldata_subset, Ref_Data, on='Patient GP')
-GPSummaryReferralData = pd.merge(GPSummaryReferralData, CDC_Data, on='Patient GP')
+    #
+    GPSummaryReferralData = pd.merge(fulldata_subset, Ref_Data, on='Patient GP')
+    GPSummaryReferralData = pd.merge(GPSummaryReferralData, CDC_Data, on='Patient GP')
 
-GPSummaryReferralData.to_csv('Stage1Outputs/GPSummaryReferralData_Map.csv')
+    GPSummaryReferralData.to_csv(f'Stage1Outputs/GPSummaryReferralData_{modality}_Map.csv')
