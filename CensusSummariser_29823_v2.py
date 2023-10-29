@@ -60,9 +60,14 @@ class CensusSummariser:
         self.sex_data_clean = self.age_sex_data[self.age_sex_data['C2021_AGE_92_NAME'].
                                                 apply(lambda x: 'Total' in x)]
 
+        # pivot for age x sex
+        pivot_table = pd.pivot_table(self.age_sex_data, values='OBS_VALUE',
+         index=['Age_range'], columns=['C_SEX_NAME'], aggfunc='sum')
+
         # write to csv
         self.age_data_clean.to_csv(self.age_clean_csv_filename)  
-        self.sex_data_clean.to_csv(self.sex_clean_csv_filename) 
+        self.sex_data_clean.to_csv(self.sex_clean_csv_filename)
+        pivot_table.to_csv('Stage1Outputs/age_sex_pivot.csv') 
 
         return self.age_data_clean, self.sex_data_clean, self.age_sex_data
     print("data check")
@@ -105,10 +110,3 @@ class CensusSummariser:
         
         return age_summary, sex_summary, eth_summary, age_sex_pivot_table
     print('Census data filtered')
-
-    #def RegionSummariser(self):
-        #pull in the IMD data and census totals data
-        #pull in the summarised GP data
-        # based it off selected LA
-        # match LA to GP practices as well - give total numbers for those practices and their IMDs
-        # calculate IMDs of GP practices
