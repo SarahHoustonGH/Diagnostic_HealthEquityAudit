@@ -45,7 +45,7 @@ Datasummariser(csv_file_path).download_GPdata_csv(GPdata_csv_url)
 ### Step 2 - Run Census Summariser
 
 #Import module
-import CensusSummariser_29823_v2  
+#import CensusSummariser_29823_v2  
 from CensusSummariser_29823_v2 import CensusSummariser
 
 ## Ask user for local authority input
@@ -59,7 +59,7 @@ summariser.summarise_age_sex_csv()  # Make sure this method is being called
 summariser.summarise_by_la(user_local_authority)
 
 ### Step 3 - Referral mapping
-from ReferralMapping_211023_v1 import ReferralMapping()
+from ReferralMapping_211023_v1 import ReferralMapping
 
 referral_mapping = ReferralMapping()
     

@@ -54,7 +54,7 @@ class HEAProcessor:
         #Summarise based on IMD
         IMD_summary_table = pd.pivot_table(filtered_GP_data, values='NUMBER_OF_PATIENTS', index=['IMD2019 Decile'],
                      aggfunc="sum")
-        
+        IMD_summary_table.index.names = ['GP_IMD']
         #IMD_summary_table['Patient_percentage'] = (IMD_summary_table['NUMBER_OF_PATIENTS'] / IMD_summary_table['NUMBER_OF_PATIENTS'] .sum()) * 100
         
         IMD_summary_table.to_csv("Stage1Outputs/IMD_summary_table.csv")
@@ -63,13 +63,13 @@ class HEAProcessor:
             df_cdc_referral = pd.read_csv(f"Stage1Outputs/CDCReferralDummy_{modality}_IMD_summary.csv")
             df_referral = pd.read_csv(f"Stage1Outputs/ReferralDummy_{modality}_IMD_summary.csv")
 
-            df_cdc_referral.columns.values[0] = "IMD2019 Decile"
+            df_cdc_referral.columns.values[0] = "GP_IMD"
             df_cdc_referral.columns.values[1] = "CDC_Count"
-            df_referral.columns.values[0] = "IMD2019 Decile"
+            df_referral.columns.values[0] = "GP_IMD"
             df_referral.columns.values[1] = "Baseline_Count"
             
-            merged_df = pd.merge(IMD_summary_table, df_referral, on='IMD2019 Decile', how='outer')
-            merged_df = pd.merge(merged_df, df_cdc_referral, on='IMD2019 Decile', how='outer')
+            merged_df = pd.merge(IMD_summary_table, df_referral, on='GP_IMD', how='outer')
+            merged_df = pd.merge(merged_df, df_cdc_referral, on='GP_IMD', how='outer')
             
             for column in merged_df.columns[1:]:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
@@ -86,7 +86,7 @@ class HEAProcessor:
         #Summarise based on IMD
         IMD_summary_table_pop = pd.pivot_table(filtered_pop_data, values='Total', index=['IMD'],
                      aggfunc="sum")
-        IMD_summary_table_pop.index.names = ['IMD Decile']
+        IMD_summary_table_pop.index.names = ['Pop_IMD']
 
         #IMD_summary_table['Patient_percentage'] = (IMD_summary_table['NUMBER_OF_PATIENTS'] / IMD_summary_table['NUMBER_OF_PATIENTS'] .sum()) * 100
         #IMD_summary_table = IMD_summary_table.rename(columns={'IMD2019 Decile':'IMD Decile'})
@@ -96,14 +96,14 @@ class HEAProcessor:
             df_cdc_referral = pd.read_csv(f"Stage1Outputs/CDCReferralDummy_{modality}_IMD_summary.csv")
             df_referral = pd.read_csv(f"Stage1Outputs/ReferralDummy_{modality}_IMD_summary.csv")
 
-            df_cdc_referral.columns.values[0] = "IMD Decile"
+            df_cdc_referral.columns.values[0] = "Pop_IMD"
             df_cdc_referral.columns.values[1] = "CDC_Count"
-            df_referral.columns.values[0] = "IMD Decile"
+            df_referral.columns.values[0] = "Pop_IMD"
             df_referral.columns.values[1] = "Baseline_Count"
 
             
-            merged_df = pd.merge(IMD_summary_table_pop, df_referral, on='IMD Decile', how='outer')
-            merged_df = pd.merge(merged_df, df_cdc_referral, on='IMD Decile', how='outer')
+            merged_df = pd.merge(IMD_summary_table_pop, df_referral, on='Pop_IMD', how='outer')
+            merged_df = pd.merge(merged_df, df_cdc_referral, on='Pop_IMD', how='outer')
             
             for column in merged_df.columns[1:]:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100

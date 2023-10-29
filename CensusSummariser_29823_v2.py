@@ -79,7 +79,7 @@ class CensusSummariser:
         # summarise age data
         age_filtered_data = self.age_data_clean[self.age_data_clean['GEOGRAPHY_NAME'].
                                                 apply(lambda x: local_authority in x)]
-        age_summary = age_filtered_data.groupby("age_range")["OBS_VALUE"].sum()
+        age_summary = age_filtered_data.groupby("Age_range")["OBS_VALUE"].sum()
 
         # summarise sex data
         sex_filtered_data = self.sex_data_clean[self.sex_data_clean['GEOGRAPHY_NAME'].
@@ -94,7 +94,7 @@ class CensusSummariser:
         
 
         # summarise age x sex
-        age_sex_pivot_table = pd.pivot_table(self.age_sex_data, values='OBS_VALUE', index='age_range',
+        age_sex_pivot_table = pd.pivot_table(self.age_sex_data, values='OBS_VALUE', index='Age_range',
                             columns = "C_SEX_NAME", aggfunc='sum')
 
         # save summaries

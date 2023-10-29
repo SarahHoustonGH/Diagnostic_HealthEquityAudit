@@ -1,4 +1,4 @@
-IMD Decile,Total,Baseline_Count,CDC_Count,Total_percentage,Baseline_Count_percentage,CDC_Count_percentage
+Pop_IMD,Total,Baseline_Count,CDC_Count,Total_percentage,Baseline_Count_percentage,CDC_Count_percentage
 1.0,26100,,,10.177422499512575,,
 2.0,64130,16.0,19.0,25.006823942288946,23.88059701492537,28.35820895522388
 3.0,47045,21.0,20.0,18.344706570481577,31.343283582089555,29.850746268656714

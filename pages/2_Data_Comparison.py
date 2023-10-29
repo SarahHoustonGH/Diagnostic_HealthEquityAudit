@@ -30,14 +30,14 @@ with st.sidebar:
 with st.sidebar:
     add_radio = demographic = st.radio(
     "What demographic would you like to disaggregate by?",
-    ["age", "gender", "ethnicity"])
+    ["age", "gender", "ethnicity","GP_IMD", "Pop_IMD"])
 
 merged_referral_file_name = f"Stage1Outputs/Merged_{modality}_{demographic}.csv"        
 merged_referral_file = pd.read_csv(merged_referral_file_name, index_col=demographic)
 merged_referral_file = merged_referral_file.fillna(value=0)
 
-merged_referral_file['Population vs CDC'] = merged_referral_file[
-    'Census_Count_percentage']-merged_referral_file['CDC_Count_percentage']
+#Population set as location of column as the names differ between IMD and other modalities
+merged_referral_file['Population vs CDC'] = merged_referral_file.iloc[:,4]-merged_referral_file['CDC_Count_percentage']
 
 merged_referral_file['Baseline vs CDC'] = merged_referral_file[
     'Baseline_Count_percentage']-merged_referral_file['CDC_Count_percentage']
@@ -81,7 +81,7 @@ plt.axhline(y=0.0, color='black', linestyle='-')
 
 # Set labels and title
 plt.ylabel('Less than expected          More than expected', fontsize=10)
-plt.xlabel('Age range', fontsize=10)
+plt.xlabel(f'{demographic}', fontsize=10)
 plt.title(f'Baseline vs CDC: Comparison of patient groups by {demographic}', fontsize=10)
 
 # Add a legend
@@ -108,8 +108,8 @@ plt.axhline(y=0.0, color='black', linestyle='-')
 
 # Set labels and title
 plt.ylabel('Less than expected          More than expected', fontsize=10)
-plt.xlabel('Age range', fontsize=10)
-plt.title('Population vs CDC: Comparison of patient groups by age range', fontsize=10)
+plt.xlabel(f'{demographic}', fontsize=10)
+plt.title(f'Population vs CDC: Comparison of patient groups by {demographic}', fontsize=10)
 
 # Add a legend
 ax.legend()
