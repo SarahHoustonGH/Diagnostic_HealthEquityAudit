@@ -12,6 +12,7 @@ class CensusSummariser:
         self.age_sex_data = None
         self.age_data_clean = None
         self.sex_data_clean = None
+        self.age_sex_data_clean = None
 
     # Downloads the age/sex Census 2021 data by local authority
     def download_age_sex_csv(self):
@@ -60,16 +61,17 @@ class CensusSummariser:
         self.sex_data_clean = self.age_sex_data[self.age_sex_data['C2021_AGE_92_NAME'].
                                                 apply(lambda x: 'Total' in x)]
 
-        # pivot for age x sex
-        pivot_table = pd.pivot_table(self.age_sex_data, values='OBS_VALUE',
-         index=['Age_range'], columns=['C_SEX_NAME'], aggfunc='sum')
+        # Append the clean datasets together for pivot
+        self.age_sex_data_clean = pd.concat([self.age_data_clean, self.sex_data_clean], axis=0)
+
+        # Reset the index
+        self.age_sex_data_clean.reset_index(drop=True, inplace=True)
 
         # write to csv
         self.age_data_clean.to_csv(self.age_clean_csv_filename)  
         self.sex_data_clean.to_csv(self.sex_clean_csv_filename)
-        pivot_table.to_csv('Stage1Outputs/age_sex_pivot.csv') 
 
-        return self.age_data_clean, self.sex_data_clean, self.age_sex_data
+        return self.age_data_clean, self.sex_data_clean, self.age_sex_data_clean
     print("data check")
 
     #Summarise based on LA
@@ -99,7 +101,9 @@ class CensusSummariser:
         
 
         # summarise age x sex
-        age_sex_pivot_table = pd.pivot_table(self.age_sex_data, values='OBS_VALUE', index='Age_range',
+        self.age_sex_data_clean = self.age_sex_data_clean[self.age_sex_data_clean['GEOGRAPHY_NAME'].
+                                                 apply(lambda x: local_authority in x)]
+        age_sex_pivot_table = pd.pivot_table(self.age_sex_data_clean, values='OBS_VALUE', index='Age_range',
                             columns = "C_SEX_NAME", aggfunc='sum')
 
         # save summaries
