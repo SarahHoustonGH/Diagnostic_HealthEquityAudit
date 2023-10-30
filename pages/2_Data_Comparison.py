@@ -44,7 +44,18 @@ merged_referral_file['Baseline vs CDC'] = merged_referral_file[
 
 comparison_columns = merged_referral_file.iloc[:, 6:]
 
-st.markdown("## Data Overview - Comparison")
+st.markdown("## Data Comparison")
+st.markdown("### Equity Audit - Data Overview")
+
+# Read the value from the file or database
+with open("Stage1Outputs/user_local_authority.txt", "r") as f:
+    local_authority = f.read()
+
+st.markdown(f"The local authority selected at processing stage was: **{local_authority}**")
+
+st.markdown("The table below displays the propertional difference in referrals from population group. "
+            "An increase in referrals from the comparator group (e.g. Population or baseline) appear as blue. "
+            "A decrease in referrals appears as red.")
 # Format the DataFrame to add '%' to the values
 #formatted_df = comparison_columns.head(10).astype(int).applymap(lambda x: f"{x}%")
 
@@ -56,15 +67,26 @@ def color_map(val):
     return ''
 
 # Apply the heatmap coloring using the styler
-styled_df = comparison_columns.head(10).style.applymap(color_map)
+styled_df = comparison_columns.head(10).style.applymap(color_map).format('{:.1f}')
 
 # Display the styled DataFrame with heatmap
-st.write(styled_df)
+#st.write(styled_df)
+st.dataframe(data=styled_df, use_container_width=True)
+
+st.markdown("SPACE FOR INTERPRETATION AND DATA STRATEGY SENTENCES")
 
 ## Making upper/lower graphs
-st.markdown("## Equity Audit - Bar Charts")
+st.markdown("### Equity Audit - Bar Charts")
+
+st.markdown("The graph also displays the proportional difference in referrals. "
+            "An increase in referrals from the comparator group (e.g. Population or baseline) appear as blue. "
+            "A decrease in referrals appears as red.")
+
+#Set columns
+col1, col2 = st.columns(2)
 
 ## Baseline v CDC
+
 
 #set up data for graph
 negative_data = merged_referral_file['Baseline vs CDC'].clip(upper=0)
@@ -88,7 +110,7 @@ plt.title(f'Baseline vs CDC: Comparison of patient groups by {demographic}', fon
 ax.legend()
 
 # Display the Matplotlib figure in Streamlit
-st.pyplot(fig)
+col1.pyplot(fig)
 
 
 ## Census v CDC
@@ -115,4 +137,4 @@ plt.title(f'Population vs CDC: Comparison of patient groups by {demographic}', f
 ax.legend()
 
 # Display the Matplotlib figure in Streamlit
-st.pyplot(fig)
+col2.pyplot(fig)

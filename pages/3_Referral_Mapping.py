@@ -16,10 +16,11 @@ import requests
 import geopandas as gpd
 import streamlit_folium
 from streamlit_folium import st_folium
+from streamlit_folium import folium_static
 
 ### Mapping ------------------------------------------------
 
-st.markdown("## Referral Sources - Maps")
+st.markdown("## Referral Mapping")
 
 #Create buttons in sidebar
 
@@ -30,10 +31,19 @@ with st.sidebar:
     ["X", "U"],
     captions = ["X ray", "Ultrasound"])
 
+# Read the value from the file or database
+with open("Stage1Outputs/user_local_authority.txt", "r") as f:
+    local_authority = f.read()
 
-local_authority = st.text_input('Local authority', 'Haringey')
-st.write('Selection:', local_authority )
+st.markdown(f"The local authority selected at processing stage was: **{local_authority}**")
 
+#local_authority = st.text_input('Local authority', 'Haringey')
+#st.write('Selection:', local_authority )
+
+st.subheader('Bubble map of GP referrals', divider='grey')
+
+st.markdown("The graph below displays the GP practice and number of referrals sent from each practice"
+            " during the time period selected.")
 
 # Create a Folium map
 #this is slow and note if this is 2011 or 2021 geojson data
@@ -68,7 +78,7 @@ m = folium.Map(location=[LA_location_lat,LA_location_long],
 df3 = combineddf[combineddf['LSOA11NM'].str.startswith(LA)]
 
 #Read in the data to be displayed on the LSOA map
-df_lsoa_imd =  pd.read_csv("Stage1Outputs\GPSummaryReferralData_U_Map.csv")
+df_lsoa_imd =  pd.read_csv(f"Stage1Outputs\GPSummaryReferralData_{modality}_Map.csv")
 
 #df2["LSOA21CDtxt"] = df2["LSOA21CD"].astype(str)
 folium.Choropleth(
@@ -83,20 +93,33 @@ folium.Choropleth(
 
 
 #Read in the GP location data to be displayed on the LSOA map
-df_gp =  pd.read_csv("Stage1Outputs\GPSummaryReferralData_U_Map.csv")
+df_gp =  pd.read_csv(f"Stage1Outputs\GPSummaryReferralData_{modality}_Map.csv")
 
 for (index, row) in df_gp.iterrows():
     pop_up_text = f"The postcode for {row.loc['GP practice name']} " #+ \
                      #is {row.loc['Postcode']}"
     folium.Circle(location=[row.loc['Latitude'], row.loc['Longitude']],
                   #radius=1000,  # Adjust the radius as needed,
-                  radius = row.loc["CountReferrals_Baseline"],
+                  radius = row.loc["Count_Referrals_Baseline"],
                   fill = True,
                   fill_opacity = 0.9,
                   color = 'black',
                   popup=pop_up_text, 
-                  tooltip=f"{row.loc['GP practice name']} sent {row.loc['CountReferrals_Baseline']} referrals").add_to(m)
+                  tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_Baseline']} referrals").add_to(m)
     
 
 
-st_data = st_folium(m, width=725)
+folium_static(m)
+
+# Custom CSS to adjust the map size
+st.write(
+    f"""
+    <style>
+        .map-container {{
+            width: 80vw;
+            height: 40vh;
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)

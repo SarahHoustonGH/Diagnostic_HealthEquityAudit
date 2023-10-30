@@ -51,6 +51,10 @@ from CensusSummariser_29823_v2 import CensusSummariser
 ## Ask user for local authority input
 user_local_authority = str(input("Enter the local authority you'd like to summarize: "))
 
+#Write this local authority for use in Streamlit
+with open("Stage1Outputs/user_local_authority.txt", "w") as f:
+    f.write(user_local_authority)
+
 # Call the methods
 summariser = CensusSummariser()
 summariser.download_age_sex_csv()
