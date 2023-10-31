@@ -15,8 +15,6 @@ import json
 import requests
 
 #Create buttons in sidebar
-with st.sidebar:
-    st.markdown("# CDC Health Equity Audit")
 
 with st.sidebar:
     st.markdown("## Options")
@@ -36,6 +34,35 @@ merged_referral_file_name = f"Stage1Outputs/Merged_{modality}_{demographic}.csv"
 merged_referral_file = pd.read_csv(merged_referral_file_name, index_col=demographic)
 merged_referral_file = merged_referral_file.fillna(value=0)
 
+st.markdown("## Data Comparison")
+
+st.markdown(
+    "This Streamlit app allows you to visualize results produced by the HSMA5 Health Equity Audit for CDCs."
+    "  :point_left: Please select your modality and demographic of interest in the panel on the left."
+)
+
+#Displaying summary of referrals
+st.subheader('Summary of referrals', divider='grey')
+
+#Read in data
+count_columns = merged_referral_file.iloc[:, :3]
+percentage_columns = merged_referral_file.iloc[:, 3:6]
+
+#Set columns
+col1, col2 = st.columns(2)
+
+# Display the first 10 rows of the selected columns
+col1.subheader('Count of referrals')
+col1.dataframe(count_columns.head(10).astype(int))
+
+# Display the first 10 rows of the selected columns
+col2.subheader('Percentage of referrals')
+percentage_columns = percentage_columns.head(10).astype(float)
+formatted_df = percentage_columns.applymap(lambda x: f"{x:.1f}%")
+col2.dataframe(formatted_df)
+
+
+
 #Population set as location of column as the names differ between IMD and other modalities
 merged_referral_file['Population vs CDC'] = merged_referral_file.iloc[:,4]-merged_referral_file['CDC_Count_percentage']
 
@@ -44,8 +71,9 @@ merged_referral_file['Baseline vs CDC'] = merged_referral_file[
 
 comparison_columns = merged_referral_file.iloc[:, 6:]
 
-st.markdown("## Data Comparison")
-st.markdown("### Equity Audit - Data Overview")
+st.subheader('Equity Audit', divider='grey')
+
+st.markdown("### Data Overview")
 
 # Read the value from the file or database
 with open("Stage1Outputs/user_local_authority.txt", "r") as f:
@@ -76,7 +104,7 @@ st.dataframe(data=styled_df, use_container_width=True)
 st.markdown("SPACE FOR INTERPRETATION AND DATA STRATEGY SENTENCES")
 
 ## Making upper/lower graphs
-st.markdown("### Equity Audit - Bar Charts")
+st.markdown("### Bar Charts")
 
 st.markdown("The graph also displays the proportional difference in referrals. "
             "An increase in referrals from the comparator group (e.g. Population or baseline) appear as blue. "

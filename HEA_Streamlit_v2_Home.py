@@ -30,7 +30,6 @@ st.set_page_config(
 header_text = "Welcome to the CDC Health Equity Audit"
 main_text = (
     "This Streamlit app allows you to visualize results produced by the HSMA5 Health Equity Audit for CDCs."
-    "  :point_left: Please select your modality and demographic of interest in the panel on the left."
 )
 
 
@@ -50,25 +49,6 @@ with open("Stage1Outputs/user_local_authority.txt", "r") as f:
     local_authority = f.read()
 
 st.markdown(f"The local authority selected at processing stage was: **{local_authority}**")
-
-#Create buttons in sidebar
-with st.sidebar:
-    st.markdown("# CDC Health Equity Audit")
-
-with st.sidebar:
-    st.markdown("## Options")
-
-with st.sidebar:
-    add_radio = modality = st.radio(
-    "What modality would you like to view?",
-    ["X", "U"],
-    captions = ["X ray", "Ultrasound"])
-
-with st.sidebar:
-    add_radio = demographic = st.radio(
-    "What demographic would you like to disaggregate by?",
-    ["age", "gender", "ethnicity"])
-
 
 
 # Create a Folium map
@@ -132,18 +112,10 @@ st.write(
 )
 
 
-#Read in data
-merged_referral_file_name = f"Stage1Outputs/Merged_{modality}_{demographic}.csv"        
-merged_referral_file = pd.read_csv(merged_referral_file_name, index_col=demographic)
-merged_referral_file = merged_referral_file.fillna(value=0)
-
-count_columns = merged_referral_file.iloc[:, :3]
-percentage_columns = merged_referral_file.iloc[:, 3:6]
-
-
 
 #Sum of population for display
-sum_of_pop = merged_referral_file['Census_Count'].sum()
+pop_data = pd.read_csv(f"Stage1Outputs\Census_ethnicity_summary_{local_authority}.csv")
+sum_of_pop = pop_data['OBS_VALUE'].sum()
 
 #Proportion of patients at GP practices in Core20
 filtered_core20 = df_lsoa_imd[df_lsoa_imd['IMD2019 Decile'] <= 2]
@@ -159,18 +131,5 @@ st.markdown(f"In the 2021 Census, {local_authority} had a population of {sum_of_
 # Display the Folium map
 folium_static(m)
 
-#Set columns
-col1, col2 = st.columns(2)
+st.subheader('IMD summary', divider='grey')
 
-# Display the first 10 rows of the selected columns
-col1.subheader('Count of referrals')
-col1.dataframe(count_columns.head(10).astype(int))
-
-# Display the first 10 rows of the selected columns
-col2.subheader('Percentage of referrals')
-percentage_columns = percentage_columns.head(10).astype(float)
-formatted_df = percentage_columns.applymap(lambda x: f"{x:.1f}%")
-col2.dataframe(formatted_df)
-
-
-#streamlit run HEA_Streamlit_draft.py

@@ -22,8 +22,13 @@ from streamlit_folium import folium_static
 
 st.markdown("## Referral Mapping")
 
-#Create buttons in sidebar
 
+st.markdown(
+    "This Streamlit app allows you to visualize results produced by the HSMA5 Health Equity Audit for CDCs."
+    "  :point_left: Please select your modality of interest in the panel on the left."
+)
+
+#Create buttons in sidebar
 
 with st.sidebar:
     add_radio = modality = st.radio(
@@ -40,9 +45,9 @@ st.markdown(f"The local authority selected at processing stage was: **{local_aut
 #local_authority = st.text_input('Local authority', 'Haringey')
 #st.write('Selection:', local_authority )
 
-st.subheader('Bubble map of GP referrals', divider='grey')
+st.subheader('Source of GP referrals', divider='grey')
 
-st.markdown("The graph below displays the GP practice and number of referrals sent from each practice"
+st.markdown("The map below displays the GP practice and number of referrals sent from each practice"
             " during the time period selected.")
 
 # Create a Folium map
@@ -93,19 +98,19 @@ folium.Choropleth(
 
 
 #Read in the GP location data to be displayed on the LSOA map
-df_gp =  pd.read_csv(f"Stage1Outputs\GPSummaryReferralData_{modality}_Map.csv")
+#df_gp =  pd.read_csv(f"Stage1Outputs\GPSummaryReferralData_{modality}_Map.csv")
 
-for (index, row) in df_gp.iterrows():
+for (index, row) in df_lsoa_imd.iterrows():
     pop_up_text = f"The postcode for {row.loc['GP practice name']} " #+ \
                      #is {row.loc['Postcode']}"
     folium.Circle(location=[row.loc['Latitude'], row.loc['Longitude']],
                   #radius=1000,  # Adjust the radius as needed,
-                  radius = row.loc["Count_Referrals_Baseline"],
+                  radius = row.loc["Count_Referrals_CDC"],
                   fill = True,
                   fill_opacity = 0.9,
                   color = 'black',
                   popup=pop_up_text, 
-                  tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_Baseline']} referrals").add_to(m)
+                  tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m)
     
 
 
@@ -123,3 +128,44 @@ st.write(
     """,
     unsafe_allow_html=True,
 )
+
+
+st.subheader('Identifying missing practices', divider='grey')
+
+st.markdown("The map below displays the GP practice and whether a referral was received from that practice"
+            " during the time period selected.")
+
+m2 = folium.Map(location=[LA_location_lat,LA_location_long],
+                        zoom_start=12,
+                        tiles='cartodbpositron')
+
+folium.Choropleth(
+                geo_data = df3,      
+                  data=df3,
+                  columns=['LSOA11CD', 'IMD2019 Decile'],
+                  key_on="properties.LSOA11CD",
+                  fill_color ='YlGnBu',      
+                  fill_opacity = 0.5,
+                  legend_name='IMD',
+                  highlight=True).add_to(m2)
+
+# Read in all GP data for region
+allGPdata =  pd.read_csv(f"Stage1Outputs\GP_location_data.csv")
+df_lsoa_imd = df_lsoa_imd.rename(columns={'Patient GP': 'CODE'})
+practicereferralmap  = allGPdata.merge(df_lsoa_imd, on='CODE', how='left')
+practicereferralmap = practicereferralmap.fillna(0)
+
+
+for (index, row) in practicereferralmap.iterrows():
+    pop_up_text = f"The postcode for {row.loc['GP practice name']} " #+ \
+                     #is {row.loc['Postcode']}"
+    color = 'red' if row.loc["Count_Referrals_CDC"] == 0 else 'black'
+    folium.Circle(location=[row.loc['Latitude_x'], row.loc['Longitude_x']],
+                  #radius=1000,  # Adjust the radius as needed,
+                  fill = True,
+                  fill_opacity = 0.9,
+                  color = color,
+                  popup=pop_up_text, 
+                  tooltip=f"{row.loc['CODE']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m2)
+    
+folium_static(m2)

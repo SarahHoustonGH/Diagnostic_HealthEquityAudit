@@ -58,6 +58,25 @@ class ReferralMapping:
             output_file = os.path.join(self.data_folder, f'GPSummaryReferralData_{modality}_Map.csv')
             gpsummary_referral_data.to_csv(output_file, index=False)
 
+    def process_GP_data(self):
+        
+            gp_location_data = pd.read_csv("Stage1Outputs\GPdata.csv")
+
+            # Add location info to the merged data
+            postcodes = gp_location_data["POSTCODE"]
+            gp_location_data["Latitude"] = None
+            gp_location_data["Longitude"] = None
+            
+            for i, postcode in enumerate(postcodes):
+                location_info = self.nomi.query_postal_code(postcode)
+                if not location_info.empty:
+                    gp_location_data.at[i, "Latitude"] = location_info.latitude
+                    gp_location_data.at[i, "Longitude"] = location_info.longitude
+            
+            # Write the final CSV
+            output_file = os.path.join(self.data_folder, f'GP_location_data.csv')
+            gp_location_data.to_csv(output_file, index=False)
+
 
 if __name__ == "__main__":
     referral_mapping = ReferralMapping()
@@ -70,3 +89,5 @@ if __name__ == "__main__":
     
     referral_modalities = ["X", "U"]
     referral_mapping.process_referral_and_location_data(referral_modalities)
+    referral_mapping.process_GP_data()
+

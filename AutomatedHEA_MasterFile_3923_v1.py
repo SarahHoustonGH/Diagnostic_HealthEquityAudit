@@ -75,6 +75,7 @@ referral_mapping.generate_subset(fulldata)
     
 referral_modalities = ["X", "U"]
 referral_mapping.process_referral_and_location_data(referral_modalities)
+referral_mapping.process_GP_data()
 
 ### Step 4 - Run HEA Processor
 
