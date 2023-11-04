@@ -83,7 +83,7 @@ m = folium.Map(location=[LA_location_lat,LA_location_long],
 df3 = combineddf[combineddf['LSOA11NM'].str.startswith(LA)]
 
 #Read in the data to be displayed on the LSOA map
-df_lsoa_imd =  pd.read_csv(f"Stage1Outputs\GPSummaryReferralData_{modality}_Map.csv")
+df_lsoa_imd =  pd.read_csv(f"Stage2Outputs\GPSummaryReferralData_{modality}_Map.csv")
 
 #df2["LSOA21CDtxt"] = df2["LSOA21CD"].astype(str)
 folium.Choropleth(
@@ -112,9 +112,8 @@ for (index, row) in df_lsoa_imd.iterrows():
                   popup=pop_up_text, 
                   tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m)
     
-
-
 folium_static(m)
+
 
 # Custom CSS to adjust the map size
 st.write(
@@ -150,7 +149,7 @@ folium.Choropleth(
                   highlight=True).add_to(m2)
 
 # Read in all GP data for region
-allGPdata =  pd.read_csv(f"Stage1Outputs\GP_location_data.csv")
+allGPdata =  pd.read_csv(f"Stage2Outputs\GP_location_data.csv")
 df_lsoa_imd = df_lsoa_imd.rename(columns={'Patient GP': 'CODE'})
 practicereferralmap  = allGPdata.merge(df_lsoa_imd, on='CODE', how='left')
 practicereferralmap = practicereferralmap.fillna(0)
@@ -169,3 +168,4 @@ for (index, row) in practicereferralmap.iterrows():
                   tooltip=f"{row.loc['CODE']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m2)
     
 folium_static(m2)
+

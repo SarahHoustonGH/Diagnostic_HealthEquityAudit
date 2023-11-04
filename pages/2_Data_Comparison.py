@@ -30,7 +30,7 @@ with st.sidebar:
     "What demographic would you like to disaggregate by?",
     ["age", "gender", "ethnicity","GP_IMD", "Pop_IMD"])
 
-merged_referral_file_name = f"Stage1Outputs/Merged_{modality}_{demographic}.csv"        
+merged_referral_file_name = f"Stage2Outputs/Merged_{modality}_{demographic}.csv"        
 merged_referral_file = pd.read_csv(merged_referral_file_name, index_col=demographic)
 merged_referral_file = merged_referral_file.fillna(value=0)
 

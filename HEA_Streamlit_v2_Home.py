@@ -85,7 +85,7 @@ m = folium.Map(location=[LA_location_lat,LA_location_long],
 df3 = combineddf[combineddf['LSOA11NM'].str.startswith(LA)]
 
 #Read in the data to be displayed on the LSOA map
-df_lsoa_imd =  pd.read_csv("Stage1Outputs\GPSummaryReferralData_U_Map.csv")
+df_lsoa_imd =  pd.read_csv("Stage2Outputs\GPSummaryReferralData_U_Map.csv")
 
 #df2["LSOA21CDtxt"] = df2["LSOA21CD"].astype(str)
 folium.Choropleth(

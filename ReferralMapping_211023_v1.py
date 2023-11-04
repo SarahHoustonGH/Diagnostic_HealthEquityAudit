@@ -29,7 +29,7 @@ class ReferralMapping:
     def generate_subset(self, fulldata):
         self.fulldata_subset = fulldata[['CODE', 'GP practice name', 'Postcode', 'ICB23ons', 'LAD21', 'LAD21name',
                                     'ICB23', 'ICB23name', 'LSOA11', 'MSOA11', 'POSTCODE', 'NUMBER_OF_PATIENTS', 'IMD2019 Decile']]
-        self.fulldata_subset.to_csv(os.path.join(self.data_folder, 'GP_Data_Map_summary.csv'))
+        self.fulldata_subset.to_csv('Stage2Outputs/GP_Data_Map_summary.csv')
         return self.fulldata_subset
 
 
@@ -55,12 +55,12 @@ class ReferralMapping:
                     gpsummary_referral_data.at[i, "Longitude"] = location_info.longitude
             
             # Write the final CSV
-            output_file = os.path.join(self.data_folder, f'GPSummaryReferralData_{modality}_Map.csv')
+            output_file = (f'Stage2Outputs/GPSummaryReferralData_{modality}_Map.csv')
             gpsummary_referral_data.to_csv(output_file, index=False)
 
     def process_GP_data(self):
         
-            gp_location_data = pd.read_csv("Stage1Outputs\GPdata.csv")
+            gp_location_data = pd.read_csv("Stage1Outputs/GPdata.csv")
 
             # Add location info to the merged data
             postcodes = gp_location_data["POSTCODE"]
@@ -74,7 +74,7 @@ class ReferralMapping:
                     gp_location_data.at[i, "Longitude"] = location_info.longitude
             
             # Write the final CSV
-            output_file = os.path.join(self.data_folder, f'GP_location_data.csv')
+            output_file = (f'Stage2Outputs/GP_location_data.csv')
             gp_location_data.to_csv(output_file, index=False)
 
 

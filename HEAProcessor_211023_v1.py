@@ -42,13 +42,13 @@ class HEAProcessor:
                 for column in merged_df.columns[1:]:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
 
-                merged_df.to_csv(f"Stage1Outputs/Merged_{modality}_{demographic}.csv", index=False)
+                merged_df.to_csv(f"Stage2Outputs/Merged_{modality}_{demographic}.csv", index=False)
 
     # Function to create IMD table for local authority
     def process_gp_IMD_data(self, user_local_authority):
         
         #Read and filter data
-        gp_data_file = pd.read_csv("Stage1Outputs\GP_Data_Map_summary.csv")
+        gp_data_file = pd.read_csv("Stage2Outputs\GP_Data_Map_summary.csv")
         filtered_GP_data = gp_data_file[gp_data_file['LAD21name'] == user_local_authority]
 
         #Summarise based on IMD
@@ -57,7 +57,7 @@ class HEAProcessor:
         IMD_summary_table.index.names = ['GP_IMD']
         #IMD_summary_table['Patient_percentage'] = (IMD_summary_table['NUMBER_OF_PATIENTS'] / IMD_summary_table['NUMBER_OF_PATIENTS'] .sum()) * 100
         
-        IMD_summary_table.to_csv("Stage1Outputs/IMD_summary_table.csv")
+        IMD_summary_table.to_csv("Stage2Outputs/IMD_summary_table.csv")
 
         for modality in self.referral_modalities:    
             df_cdc_referral = pd.read_csv(f"Stage1Outputs/CDCReferralDummy_{modality}_IMD_summary.csv")
@@ -74,7 +74,7 @@ class HEAProcessor:
             for column in merged_df.columns[1:]:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
 
-            merged_df.to_csv(f"Stage1Outputs/Merged_{modality}_GP_IMD.csv", index=False)
+            merged_df.to_csv(f"Stage2Outputs/Merged_{modality}_GP_IMD.csv", index=False)
 
     # Function to create IMD table for local authority
     def process_pop_IMD_data(self, user_local_authority):
@@ -90,7 +90,7 @@ class HEAProcessor:
 
         #IMD_summary_table['Patient_percentage'] = (IMD_summary_table['NUMBER_OF_PATIENTS'] / IMD_summary_table['NUMBER_OF_PATIENTS'] .sum()) * 100
         #IMD_summary_table = IMD_summary_table.rename(columns={'IMD2019 Decile':'IMD Decile'})
-        IMD_summary_table_pop.to_csv("Stage1Outputs/IMD_summary_table_pop.csv")
+        IMD_summary_table_pop.to_csv("Stage2Outputs/IMD_summary_table_pop.csv")
 
         for modality in self.referral_modalities:    
             df_cdc_referral = pd.read_csv(f"Stage1Outputs/CDCReferralDummy_{modality}_IMD_summary.csv")
@@ -108,7 +108,7 @@ class HEAProcessor:
             for column in merged_df.columns[1:]:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
 
-            merged_df.to_csv(f"Stage1Outputs/Merged_{modality}_Pop_IMD.csv", index=False)
+            merged_df.to_csv(f"Stage2Outputs/Merged_{modality}_Pop_IMD.csv", index=False)
 
 
 
