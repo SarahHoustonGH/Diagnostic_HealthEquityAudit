@@ -156,8 +156,8 @@ practicereferralmap = practicereferralmap.fillna(0)
 
 
 for (index, row) in practicereferralmap.iterrows():
-    pop_up_text = f"The postcode for {row.loc['GP practice name']} " #+ \
-                     #is {row.loc['Postcode']}"
+    pop_up_text = f"The postcode for {row.loc['GP practice name']} " + \
+                     "is {row.loc['Postcode']}"
     color = 'red' if row.loc["Count_Referrals_CDC"] == 0 else 'black'
     folium.Circle(location=[row.loc['Latitude_x'], row.loc['Longitude_x']],
                   #radius=1000,  # Adjust the radius as needed,
@@ -169,3 +169,32 @@ for (index, row) in practicereferralmap.iterrows():
     
 folium_static(m2)
 
+st.subheader('Source of referrals by LSOA', divider='grey')
+
+st.markdown("The map below displays etc............"
+            " ")
+
+m3 = folium.Map(location=[LA_location_lat,LA_location_long],
+                        zoom_start=12,
+                        tiles='cartodbpositron')
+
+combineddf = combineddf.rename(columns={'LSOA11CD': 'LSOA11'})
+combineddf2  = combineddf.merge(practicereferralmap, on='LSOA11', how='left')
+
+df4 = combineddf2[combineddf2['LSOA11NM'].str.startswith(LA)]
+
+pop_up_text2 = f"{row.loc['GP practice name']} " + \
+                f"sent {row.loc['Count_Referrals_CDC']} referrals"
+
+folium.Choropleth(
+                geo_data = df4,      
+                  data=df4,
+                  columns=['LSOA11', 'Count_Referrals_CDC'],
+                  key_on="properties.LSOA11",
+                  fill_color ='Purples',      
+                  fill_opacity = 0.5,
+                  legend_name='Count of Referrals',
+                  popup=pop_up_text2, 
+                  highlight=True).add_to(m3)
+
+folium_static(m3)

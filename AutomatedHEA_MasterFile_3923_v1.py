@@ -57,9 +57,15 @@ with open("Stage1Outputs/user_local_authority.txt", "w") as f:
 
 # Call the methods
 summariser = CensusSummariser()
+
+# Download the Census data
 summariser.download_age_sex_csv()
 summariser.download_ethnicity_csv()
-summariser.summarise_age_sex_csv()  # Make sure this method is being called
+
+# Summarize the data
+age_data_clean, sex_data_clean, age_sex_data_clean = summariser.summarise_age_sex_csv()
+
+# Provide a local authority for summarization
 summariser.summarise_by_la(user_local_authority)
 
 ### Step 3 - Referral mapping
