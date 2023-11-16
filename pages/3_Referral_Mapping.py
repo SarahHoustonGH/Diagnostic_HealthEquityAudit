@@ -171,7 +171,7 @@ folium_static(m2)
 
 st.subheader('Source of referrals by LSOA', divider='grey')
 
-st.markdown("The map below displays etc............"
+st.markdown("The map below displays the LSOAs from which referrals to the CDC were received for this modality."
             " ")
 
 m3 = folium.Map(location=[LA_location_lat,LA_location_long],

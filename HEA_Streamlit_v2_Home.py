@@ -128,8 +128,31 @@ st.markdown(f"In the 2021 Census, {local_authority} had a population of {sum_of_
     "with a practice in the Core20 (IMD 1 + 2). The map below displays the LSOAs coloured "
     "by their respective Index of Multiple Deprivation decile (1 being most deprived, 10 being least deprived).")
 
+postcode = st.text_input(f'Add the postcode of your CDC in {local_authority} to display on the map (e.g., SW1A 1AA):')
+
+def get_coordinates(postcode):
+    geolocator = Nominatim(user_agent="my_app")
+    location = geolocator.geocode(postcode)
+    if location:
+        return location.latitude, location.longitude
+    return None
+
+#Display postcode on map
+if postcode:
+    # Get coordinates from the postcode
+    coordinates = get_coordinates(postcode)
+    if coordinates:
+            # Add marker
+            folium.Marker(
+                location=coordinates,
+                popup='CDC',
+                icon=folium.Icon(color='black')
+           ).add_to(m)
+    else:
+            st.error('Invalid postcode or location not found.')
+
 # Display the Folium map
 folium_static(m)
 
-st.subheader('IMD summary', divider='grey')
+# st.subheader('IMD summary', divider='grey')
 
