@@ -41,33 +41,27 @@ st.markdown(
     "  :point_left: Please select your modality and demographic of interest in the panel on the left."
 )
 
-#Displaying summary of referrals
-st.subheader('Summary of referrals', divider='grey')
+### Data summary analysis
 
 #Read in data
 count_columns = merged_referral_file.iloc[:, :3]
 percentage_columns = merged_referral_file.iloc[:, 3:6]
 
-#Set columns
-col1, col2 = st.columns(2)
-
-# Display the first 10 rows of the selected columns
-col1.subheader('Count of referrals')
-col1.dataframe(count_columns.head(10).astype(int))
-
-# Display the first 10 rows of the selected columns
-col2.subheader('Percentage of referrals')
 percentage_columns = percentage_columns.head(10).astype(float)
 formatted_df = percentage_columns.applymap(lambda x: f"{x:.1f}%")
-col2.dataframe(formatted_df)
 
 
 
 #Population set as location of column as the names differ between IMD and other modalities
-merged_referral_file['Population vs CDC'] = merged_referral_file.iloc[:,4]-merged_referral_file['CDC_Count_percentage']
+merged_referral_file['Baseline vs Population'] = merged_referral_file['Baseline_Count_percentage']-merged_referral_file.iloc[:,3]
 
-merged_referral_file['Baseline vs CDC'] = merged_referral_file[
-    'Baseline_Count_percentage']-merged_referral_file['CDC_Count_percentage']
+merged_referral_file['CDC vs Baseline'] = merged_referral_file['CDC_Count_percentage']-merged_referral_file['Baseline_Count_percentage']
+
+merged_referral_file['CDC vs Population'] = merged_referral_file['CDC_Count_percentage']-merged_referral_file.iloc[:,3]
+
+# Add % sign to columns
+columns_to_format = ['Baseline vs Population', 'CDC vs Baseline', 'CDC vs Population']
+
 
 comparison_columns = merged_referral_file.iloc[:, 6:]
 
@@ -89,19 +83,37 @@ st.markdown("The table below displays the propertional difference in referrals f
 
 def color_map(val):
     if val > 0:
-        return f'background-color: rgba(17, 0, 255, {val / 100})'  # Blue for larger numbers
+        return f'background-color: rgba(0, 0, 255, {val / 100})'  # Stronger Blue for larger numbers
     elif val < 0:
-        return f'background-color: rgba(255, 0, 0, {-val / 100})'  # Red for smaller numbers
+        return f'background-color: rgba(255, 0, 0, {-val / 100})'  # Stronger Red for smaller numbers
     return ''
 
-# Apply the heatmap coloring using the styler
-styled_df = comparison_columns.head(10).style.applymap(color_map).format('{:.1f}')
+# Apply formatting to the DataFrame (numeric formatting)
+formatted_df = comparison_columns.head(10).style.format('{:.1f}%')
+
+# Apply the color map using the apply() function with a lambda function
+styled_df = formatted_df.apply(lambda x: x.apply(color_map))
+
+# Set values to be centrally aligned
+styled_df = styled_df.set_properties(**{'text-align': 'center'})
 
 # Display the styled DataFrame with heatmap
-#st.write(styled_df)
 st.dataframe(data=styled_df, use_container_width=True)
 
-st.markdown("SPACE FOR INTERPRETATION AND DATA STRATEGY SENTENCES")
+
+## Data Strategy
+
+# Find the value in the "CDC_percent" column where the index is "Unknown"
+cdc_unknown_percentage = percentage_columns.loc["Unknown", "CDC_Count_percentage"]
+formatted_cdc_percentage = f"{cdc_unknown_percentage:.1f}%"
+
+ethnicity_info = "Collection of ethnicity is essential in mapping health inequity."
+
+st.markdown(f"{formatted_cdc_percentage} of your CDC referrals do not have a usable {demographic} recorded. "
+                "This should be considered in your interpretation of results.")
+
+if demographic == "ethnicity":
+    st.markdown(ethnicity_info)
 
 ## Making upper/lower graphs
 st.markdown("### Bar Charts")
@@ -117,8 +129,8 @@ col1, col2 = st.columns(2)
 
 
 #set up data for graph
-negative_data = merged_referral_file['Baseline vs CDC'].clip(upper=0)
-positive_data = merged_referral_file['Baseline vs CDC'].clip(lower=0)
+negative_data = merged_referral_file['CDC vs Baseline'].clip(upper=0)
+positive_data = merged_referral_file['CDC vs Baseline'].clip(lower=0)
 
 fig, ax = plt.subplots()
 
@@ -132,7 +144,7 @@ plt.axhline(y=0.0, color='black', linestyle='-')
 # Set labels and title
 plt.ylabel('Less than expected          More than expected', fontsize=10)
 plt.xlabel(f'{demographic}', fontsize=10)
-plt.title(f'Baseline vs CDC: Comparison of patient groups by {demographic}', fontsize=10)
+plt.title(f'CDC vs Baseline: Comparison of patient groups by {demographic}', fontsize=10)
 
 # Add a legend
 ax.legend()
@@ -144,8 +156,8 @@ col1.pyplot(fig)
 ## Census v CDC
 
 #set up data for graph
-negative_data = merged_referral_file['Population vs CDC'].clip(upper=0)
-positive_data = merged_referral_file['Population vs CDC'].clip(lower=0)
+negative_data = merged_referral_file['CDC vs Population'].clip(upper=0)
+positive_data = merged_referral_file['CDC vs Population'].clip(lower=0)
 
 fig, ax = plt.subplots()
 
@@ -159,10 +171,28 @@ plt.axhline(y=0.0, color='black', linestyle='-')
 # Set labels and title
 plt.ylabel('Less than expected          More than expected', fontsize=10)
 plt.xlabel(f'{demographic}', fontsize=10)
-plt.title(f'Population vs CDC: Comparison of patient groups by {demographic}', fontsize=10)
+plt.title(f'CDC vs Population: Comparison of patient groups by {demographic}', fontsize=10)
 
 # Add a legend
 ax.legend()
 
 # Display the Matplotlib figure in Streamlit
 col2.pyplot(fig)
+
+
+## Data Summary
+
+#Displaying summary of referrals
+st.subheader('Summary of referrals', divider='grey')
+
+# Display the first 10 rows of the selected columns
+col1.subheader('Count of referrals')
+col1.dataframe(count_columns.head(10).astype(int))
+
+# Display the first 10 rows of the selected columns
+col2.subheader('Percentage of referrals')
+col2.dataframe(formatted_df)
+
+
+#Set columns
+col1, col2 = st.columns(2)

@@ -38,8 +38,8 @@ class Datasummariser:
 
     def ConvertPostcodeIMD(self):
         
-        #Create a list of referral postcodes to feed into webpage
-        postcodes = self.data['Postcode'].tolist()
+        # Create a set of unique referral postcodes to feed into the webpage
+        postcodes = set(self.data['Postcode'].tolist())
 
         ## Sending postcode to website to extract IMD
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -54,7 +54,7 @@ class Datasummariser:
 
         for postcode in postcodes:
             postcodelist = postcodelist + postcode + "\r\n"
-
+            
         # send this postcode list to the webpage
         search.send_keys(postcodelist)
 
