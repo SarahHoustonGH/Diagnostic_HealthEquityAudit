@@ -45,7 +45,7 @@ st.markdown(f"The local authority selected at processing stage was: **{local_aut
 #local_authority = st.text_input('Local authority', 'Haringey')
 #st.write('Selection:', local_authority )
 
-st.subheader('Source of GP referrals', divider='grey')
+st.subheader('Which GP practices have referred to the CDC?', divider='grey')
 
 st.markdown("The map below displays the GP practice and number of referrals sent from each practice"
             " during the time period selected.")
@@ -74,7 +74,7 @@ LA_location_long= LA_location[["LONG"]].values
 
 # Create base map
 m = folium.Map(location=[LA_location_lat,LA_location_long],
-                        zoom_start=12,
+                        zoom_start=10,
                         tiles='cartodbpositron')
 
 
@@ -105,7 +105,7 @@ for (index, row) in df_lsoa_imd.iterrows():
                      #is {row.loc['Postcode']}"
     folium.Circle(location=[row.loc['Latitude'], row.loc['Longitude']],
                   #radius=1000,  # Adjust the radius as needed,
-                  radius = row.loc["Count_Referrals_CDC"],
+                  radius = row.loc["Count_Referrals_CDC"]*3,
                   fill = True,
                   fill_opacity = 0.9,
                   color = 'black',
@@ -129,13 +129,13 @@ st.write(
 )
 
 
-st.subheader('Identifying missing practices', divider='grey')
+st.subheader('Have all local GP practices referred to the CDC?', divider='grey')
 
-st.markdown("The map below displays the GP practice and whether a referral was received from that practice"
+st.markdown("CDCs are emerging services, and as such, may not have engaged with all local GP practices to start referrring to the service. The map below displays the GP practice and whether a referral was received from that practice"
             " during the time period selected.")
 
 m2 = folium.Map(location=[LA_location_lat,LA_location_long],
-                        zoom_start=12,
+                        zoom_start=10,
                         tiles='cartodbpositron')
 
 folium.Choropleth(
@@ -156,8 +156,8 @@ practicereferralmap = practicereferralmap.fillna(0)
 
 
 for (index, row) in practicereferralmap.iterrows():
-    pop_up_text = f"The postcode for {row.loc['GP practice name']} " + \
-                     "is {row.loc['Postcode']}"
+    # pop_up_text = f"The postcode for {row.loc['GP practice name']} " + \
+    #                  "is {row.loc['Postcode']}"
     color = 'red' if row.loc["Count_Referrals_CDC"] == 0 else 'black'
     folium.Circle(location=[row.loc['Latitude_x'], row.loc['Longitude_x']],
                   #radius=1000,  # Adjust the radius as needed,
@@ -165,17 +165,17 @@ for (index, row) in practicereferralmap.iterrows():
                   fill_opacity = 0.9,
                   color = color,
                   popup=pop_up_text, 
-                  tooltip=f"{row.loc['CODE']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m2)
+                  tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m2)
     
 folium_static(m2)
 
-st.subheader('Source of referrals by LSOA', divider='grey')
+st.subheader('Is there a regional disparity in referral sources?', divider='grey')
 
 st.markdown("The map below displays the LSOAs from which referrals to the CDC were received for this modality."
             " ")
 
 m3 = folium.Map(location=[LA_location_lat,LA_location_long],
-                        zoom_start=12,
+                        zoom_start=10,
                         tiles='cartodbpositron')
 
 combineddf = combineddf.rename(columns={'LSOA11CD': 'LSOA11'})

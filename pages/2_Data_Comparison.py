@@ -13,6 +13,7 @@ from folium import plugins
 import pandas as pd
 import json
 import requests
+from matplotlib.ticker import FuncFormatter
 
 #Create buttons in sidebar
 
@@ -48,8 +49,7 @@ count_columns = merged_referral_file.iloc[:, :3]
 percentage_columns = merged_referral_file.iloc[:, 3:6]
 
 percentage_columns = percentage_columns.head(10).astype(float)
-formatted_df = percentage_columns.applymap(lambda x: f"{x:.1f}%")
-
+ct_formatted_df = percentage_columns.applymap(lambda x: f"{x:.1f}%")
 
 
 #Population set as location of column as the names differ between IMD and other modalities
@@ -61,7 +61,6 @@ merged_referral_file['CDC vs Population'] = merged_referral_file['CDC_Count_perc
 
 # Add % sign to columns
 columns_to_format = ['Baseline vs Population', 'CDC vs Baseline', 'CDC vs Population']
-
 
 comparison_columns = merged_referral_file.iloc[:, 6:]
 
@@ -75,7 +74,7 @@ with open("Stage1Outputs/user_local_authority.txt", "r") as f:
 
 st.markdown(f"The local authority selected at processing stage was: **{local_authority}**")
 
-st.markdown("The table below displays the propertional difference in referrals from population group. "
+st.markdown("The table below displays the proportional difference of referrals to a comparator group. "
             "An increase in referrals from the comparator group (e.g. Population or baseline) appear as blue. "
             "A decrease in referrals appears as red.")
 # Format the DataFrame to add '%' to the values
@@ -103,30 +102,34 @@ st.dataframe(data=styled_df, use_container_width=True)
 
 ## Data Strategy
 
-# Find the value in the "CDC_percent" column where the index is "Unknown"
-cdc_unknown_percentage = percentage_columns.loc["Unknown", "CDC_Count_percentage"]
-formatted_cdc_percentage = f"{cdc_unknown_percentage:.1f}%"
+ethnicity_info = "Collection of ethnicity is essential in mapping health inequity. Please see the below links for more details on how to address issues ethnicity data quality. LINK 1"
 
-ethnicity_info = "Collection of ethnicity is essential in mapping health inequity."
+# Check if "Unknown" index exists in percentage_columns DataFrame
+if "Unknown" in percentage_columns.index:
+    # If "Unknown" exists, fetch the value
+    cdc_unknown_percentage = percentage_columns.loc["Unknown", "CDC_Count_percentage"]
+    formatted_cdc_percentage = f"{cdc_unknown_percentage:.1f}%"
 
-st.markdown(f"{formatted_cdc_percentage} of your CDC referrals do not have a usable {demographic} recorded. "
+    # Display the sentence with the formatted percentage
+    st.markdown(f"{formatted_cdc_percentage} of your CDC referrals do not have a usable {demographic} recorded. "
                 "This should be considered in your interpretation of results.")
 
-if demographic == "ethnicity":
-    st.markdown(ethnicity_info)
+    # Check for demographic and display additional information if it's "ethnicity"
+    if demographic == "ethnicity":
+        st.markdown(ethnicity_info)
+
 
 ## Making upper/lower graphs
-st.markdown("### Bar Charts")
+st.markdown("### Visualisation of difference")
 
 st.markdown("The graph also displays the proportional difference in referrals. "
-            "An increase in referrals from the comparator group (e.g. Population or baseline) appear as blue. "
-            "A decrease in referrals appears as red.")
+            "An increase in referrals from the comparator group (e.g. Population or baseline), i.e. 'more than expected', appears as blue. "
+            "A decrease in referrals, i.e. 'less than expected' appears as red.")
 
-#Set columns
-col1, col2 = st.columns(2)
+st.markdown("The index of multiple deprivation is presented by the IMD decile of the location of the patient's GP (GP_IMD) "
+            "or population-weighted IMD of the patient's GP (Pop_IMD).")
 
 ## Baseline v CDC
-
 
 #set up data for graph
 negative_data = merged_referral_file['CDC vs Baseline'].clip(upper=0)
@@ -149,8 +152,18 @@ plt.title(f'CDC vs Baseline: Comparison of patient groups by {demographic}', fon
 # Add a legend
 ax.legend()
 
+# Formatting y-axis tick labels to include %
+def format_func(value, tick_number):
+    return f'{value}%'
+
+# Apply the custom formatter to the y-axis
+ax.yaxis.set_major_formatter(FuncFormatter(format_func))
+
 # Display the Matplotlib figure in Streamlit
-col1.pyplot(fig)
+st.pyplot(fig)
+
+st.markdown("The CDC vs Baseline comparison describes how the GP referral patterns of the CDC compares to a baseline period at a similar diagnostic service. "
+            "This metric accounts for any specifc demographic weighting for particular modalities.")
 
 
 ## Census v CDC
@@ -176,8 +189,14 @@ plt.title(f'CDC vs Population: Comparison of patient groups by {demographic}', f
 # Add a legend
 ax.legend()
 
+# Apply the custom formatter to the y-axis
+ax.yaxis.set_major_formatter(FuncFormatter(format_func))
+
 # Display the Matplotlib figure in Streamlit
-col2.pyplot(fig)
+st.pyplot(fig)
+
+st.markdown(f"The CDC vs Population comparison describes how the GP referral patterns of the CDC compares to the population of {local_authority}. "
+            "This metric highlights any perpetuating inequalities in access for referrals to the CDC.")
 
 
 ## Data Summary
@@ -185,14 +204,19 @@ col2.pyplot(fig)
 #Displaying summary of referrals
 st.subheader('Summary of referrals', divider='grey')
 
-# Display the first 10 rows of the selected columns
-col1.subheader('Count of referrals')
-col1.dataframe(count_columns.head(10).astype(int))
+st.markdown("A summary of referral data is included below for review and quality control. ")
 
-# Display the first 10 rows of the selected columns
-col2.subheader('Percentage of referrals')
-col2.dataframe(formatted_df)
 
 
 #Set columns
-col1, col2 = st.columns(2)
+col3, col4 = st.columns(2)
+
+# Display the first 10 rows of the selected columns
+col3.subheader('Count of referrals')
+col3.dataframe(count_columns.head(10).astype(int), width=300)
+
+# Display the first 10 rows of the selected columns
+col4.subheader('Percentage of referrals')
+col4.dataframe(ct_formatted_df.head(10), width=300)
+
+

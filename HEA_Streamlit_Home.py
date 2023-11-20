@@ -23,13 +23,12 @@ st.set_page_config(
 )
 
 
-
 #st.title(f'Health Equity Audit of CDC in {local_authority}')
 
 # Define the header and main text
-header_text = "Welcome to the CDC Health Equity Audit"
+header_text = "Welcome to the Automated CDC Health Equity Audit"
 main_text = (
-    "This Streamlit app allows you to visualize results produced by the HSMA5 Health Equity Audit for CDCs."
+    "This Streamlit app allows you to visualize results produced by the HSMA5 Automated Health Equity Audit for CDCs."
 )
 
 
