@@ -83,11 +83,12 @@ referral_modalities = ["X", "U"]
 referral_mapping.process_referral_and_location_data(referral_modalities)
 referral_mapping.process_GP_data()
 
+
 ### Step 4 - Run HEA Processor
 
 from HEAProcessor_211023_v1 import HEAProcessor
 
 data_processor = HEAProcessor()
-data_processor.merge_process_data()
+data_processor.merge_process_data(user_local_authority)
 data_processor.process_gp_IMD_data(user_local_authority)
 data_processor.process_pop_IMD_data(user_local_authority)

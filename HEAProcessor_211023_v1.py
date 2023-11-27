@@ -14,12 +14,12 @@ class HEAProcessor:
             'Other ethnic group': 'Other'
         }
 
-    def merge_process_data(self):
+    def merge_process_data(self, user_local_authority):
         for modality in self.referral_modalities:
             for demographic in self.demographics:
                 cdc_referral_file = f"Stage1Outputs/CDCReferralDummy_{modality}_{demographic}_summary.csv"
                 referral_file = f"Stage1Outputs/ReferralDummy_{modality}_{demographic}_summary.csv"
-                census_file = f"Stage1Outputs/Census_{demographic}_summary_Haringey.csv"
+                census_file = f"Stage1Outputs/Census_{demographic}_summary_{user_local_authority}.csv"
 
                 df_cdc_referral = pd.read_csv(cdc_referral_file)
                 df_referral = pd.read_csv(referral_file)

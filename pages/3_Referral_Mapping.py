@@ -105,7 +105,7 @@ for (index, row) in df_lsoa_imd.iterrows():
                      #is {row.loc['Postcode']}"
     folium.Circle(location=[row.loc['Latitude'], row.loc['Longitude']],
                   #radius=1000,  # Adjust the radius as needed,
-                  radius = row.loc["Count_Referrals_CDC"]*2,
+                  radius = row.loc["Count_Referrals_CDC"]*3,
                   fill = True,
                   fill_opacity = 0.9,
                   color = 'black',
@@ -160,9 +160,9 @@ for (index, row) in practicereferralmap.iterrows():
     #                  "is {row.loc['Postcode']}"
     color = 'red' if row.loc["Count_Referrals_CDC"] == 0 else 'black'
     folium.Circle(location=[row.loc['Latitude_x'], row.loc['Longitude_x']],
-                  #radius=1000,  # Adjust the radius as needed,
+                  radius=200,  # Adjust the radius as needed,
                   fill = True,
-                  fill_opacity = 0.9,
+                  fill_opacity = 1,
                   color = color,
                   popup=pop_up_text, 
                   tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m2)
@@ -181,20 +181,25 @@ m3 = folium.Map(location=[LA_location_lat,LA_location_long],
 combineddf = combineddf.rename(columns={'LSOA11CD': 'LSOA11'})
 combineddf2  = combineddf.merge(practicereferralmap, on='LSOA11', how='left')
 
+combineddf2['Count_Referrals_CDC'] = combineddf2['Count_Referrals_CDC'].fillna(0)
+
 df4 = combineddf2[combineddf2['LSOA11NM'].str.startswith(LA)]
 
 pop_up_text2 = f"{row.loc['GP practice name']} " + \
                 f"sent {row.loc['Count_Referrals_CDC']} referrals"
 
+
+# Plot regions
 folium.Choropleth(
                 geo_data = df4,      
                   data=df4,
                   columns=['LSOA11', 'Count_Referrals_CDC'],
                   key_on="properties.LSOA11",
-                  fill_color ='Purples',      
-                  fill_opacity = 0.5,
+                  fill_color ='Blues',      
+                  fill_opacity = 0.8,
                   legend_name='Count of Referrals',
                   popup=pop_up_text2, 
                   highlight=True).add_to(m3)
 
+# Display the map
 folium_static(m3)
