@@ -105,7 +105,7 @@ for (index, row) in df_lsoa_imd.iterrows():
                      #is {row.loc['Postcode']}"
     folium.Circle(location=[row.loc['Latitude'], row.loc['Longitude']],
                   #radius=1000,  # Adjust the radius as needed,
-                  radius = row.loc["Count_Referrals_CDC"]*3,
+                  radius = row.loc["Count_Referrals_CDC"]*2,
                   fill = True,
                   fill_opacity = 0.9,
                   color = 'black',
