@@ -3,6 +3,7 @@ import pandas as pd
 import pgeocode
 import logging 
 from geopy.geocoders import Nominatim
+import requests
 
 class ReferralMapping:
     def __init__(self):
@@ -10,6 +11,7 @@ class ReferralMapping:
         self.nomi = pgeocode.Nominatim('gb')
         self.fulldata_subset = None
         self.geolocator = Nominatim(user_agent="myGeocoder")
+        self.api_key = 'YOUR API KEY'
 
     def read_mapping_data(self):
         mapping_data = pd.read_csv("Data/x-boundary-mapping-2023-24-v1.csv")
@@ -71,12 +73,12 @@ class ReferralMapping:
         for modality in referral_modalities:
             ref_data = pd.read_csv(os.path.join(self.data_folder, f"ReferralDummy_{modality}_GPCode_summary.csv"))
             cdc_data = pd.read_csv(os.path.join(self.data_folder, f"CDCReferralDummy_{modality}_GPCode_summary.csv"))
-            
+                
             self.fulldata_subset = self.fulldata_subset.rename(columns={'CODE': 'Patient GP'})
-            
+          
             gpsummary_referral_data = pd.merge(self.fulldata_subset, ref_data, on='Patient GP')
             gpsummary_referral_data = pd.merge(gpsummary_referral_data, cdc_data, on='Patient GP', suffixes=('_Referrals_Baseline','_Referrals_CDC'))
-            
+       
             # Add location info to the merged data
             gpsummary_referral_data["Latitude"] = None
             gpsummary_referral_data["Longitude"] = None
@@ -85,14 +87,11 @@ class ReferralMapping:
                 postcode = row["Postcode"]
                 location_info = self.get_lat_long(postcode)
                 if location_info is not None:
-                    gpsummary_referral_data.at[index, "Latitude"] = location_info.latitude
-                    gpsummary_referral_data.at[index, "Longitude"] = location_info.longitude
+                    gpsummary_referral_data.at[index, "Latitude"] = location_info['latitude']
+                    gpsummary_referral_data.at[index, "Longitude"] = location_info['longitude']
                 else:
-                    # Handle empty location_info - log, skip, or set default values
                     print(f"No location info for postcode: {postcode}")
-                    # For example:
-                    # gpsummary_referral_data.at[index, "Latitude"] = 0.0
-                    # gpsummary_referral_data.at[index, "Longitude"] = 0.0
+                    # Handle empty location_info if needed
             
             # Write the final CSV
             output_file = f'Stage2Outputs/GPSummaryReferralData_{modality}_Map.csv'
@@ -100,8 +99,20 @@ class ReferralMapping:
 
     def get_lat_long(self, postcode):
         try:
-            location = self.geolocator.geocode({"postalcode": postcode, "country": "United Kingdom"})
-            return location
+            url = f"https://api.ordnancesurvey.co.uk/opennames/v1/find?query={postcode}&key={self.api_key}"
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                if data['results']:
+                    return {
+                        'latitude': data['results'][0]['LAT'],
+                        'longitude': data['results'][0]['LONG']
+                    }
+                else:
+                    return None
+            else:
+                print(f"Error fetching location for {postcode}. Status code: {response.status_code}")
+                return None
         except Exception as e:
             print(f"Error fetching location for {postcode}: {e}")
             return None
