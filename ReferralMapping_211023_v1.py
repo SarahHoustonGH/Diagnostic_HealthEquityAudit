@@ -38,85 +38,93 @@ class ReferralMapping:
         return self.fulldata_subset
 
 
-        # def process_referral_and_location_data(self, referral_modalities):      
-        #     for modality in referral_modalities:
-        #         ref_data = pd.read_csv(os.path.join(self.data_folder, f"ReferralDummy_{modality}_GPCode_summary.csv"))
-        #         cdc_data = pd.read_csv(os.path.join(self.data_folder, f"CDCReferralDummy_{modality}_GPCode_summary.csv"))
+    # def process_referral_and_location_data(self, referral_modalities):
+    #     for modality in referral_modalities:
+    #         ref_data = pd.read_csv(os.path.join(self.data_folder, f"ReferralDummy_{modality}_GPCode_summary.csv"))
+    #         cdc_data = pd.read_csv(os.path.join(self.data_folder, f"CDCReferralDummy_{modality}_GPCode_summary.csv"))
                 
-        #         self.fulldata_subset = self.fulldata_subset.rename(columns={'CODE': 'Patient GP'})
-                
-        #         gpsummary_referral_data = pd.merge(self.fulldata_subset, ref_data, on='Patient GP')
-        #         gpsummary_referral_data = pd.merge(gpsummary_referral_data, cdc_data, on='Patient GP', suffixes=('_Referrals_Baseline','_Referrals_CDC'))
-                
-        #         # Add location info to the merged data
-        #         gpsummary_referral_data["Latitude"] = None
-        #         gpsummary_referral_data["Longitude"] = None
-                
-        #         for index, row in gpsummary_referral_data.iterrows():
-        #             postcode = row["Postcode"]
-        #             location_info = self.nomi.query_postal_code(postcode)
-        #             if not location_info.empty:
-        #                 gpsummary_referral_data.at[index, "Latitude"] = location_info.latitude
-        #                 gpsummary_referral_data.at[index, "Longitude"] = location_info.longitude
-        #             else:
-        #                 # Handle empty location_info - log, skip, or set default values
-        #                 logging.warning(f"No location info for postcode: {postcode}")
-        #                 # For example:
-        #                 # gpsummary_referral_data.at[index, "Latitude"] = 0.0
-        #                 # gpsummary_referral_data.at[index, "Longitude"] = 0.0
-                
-        #         # Write the final CSV
-        #         output_file = f'Stage2Outputs/GPSummaryReferralData_{modality}_Map.csv'
-        #         gpsummary_referral_data.to_csv(output_file, index=False)
+    #         self.fulldata_subset = self.fulldata_subset.rename(columns={'CODE': 'Patient GP'})
+          
+    #         gpsummary_referral_data = pd.merge(self.fulldata_subset, ref_data, on='Patient GP')
+    #         gpsummary_referral_data = pd.merge(gpsummary_referral_data, cdc_data, on='Patient GP', suffixes=('_Referrals_Baseline','_Referrals_CDC'))
+       
+    #         # Add location info to the merged data
+    #         gpsummary_referral_data["Latitude"] = None
+    #         gpsummary_referral_data["Longitude"] = None
+            
+    #         for index, row in gpsummary_referral_data.iterrows():
+    #             postcode = row["Postcode"]
+    #             location_info = self.get_lat_long(postcode)  # Assume get_lat_long makes the API call
+    #             if location_info is not None:
+    #                 gpsummary_referral_data.at[index, "Latitude"] = location_info['latitude']
+    #                 gpsummary_referral_data.at[index, "Longitude"] = location_info['longitude']
+    #             else:
+    #                 print(f"No location info for postcode: {postcode}")
+    #                 # Handle empty location_info if needed
 
+    #         # Write the final CSV
+    #         output_file = f'Stage2Outputs/GPSummaryReferralData_{modality}_Map.csv'
+    #         gpsummary_referral_data.to_csv(output_file, index=False)
+
+    # def get_lat_long(self, postcode):
+    #     # Implement your API call here to fetch latitude and longitude based on the postcode
+    #     # Use requests library or any suitable method to fetch the data
+    #     # Example:
+    #     response = requests.post("https://api.postcodes.io/postcodes", json={"postcodes": [postcode]})
+    #     if response.status_code == 200:
+    #         # Extract latitude and longitude from the API response
+    #         location_data = response.json()
+    #         latitude = location_data['result'][0]['result_latitude']
+    #         longitude = location_data['result'][0]['result_longitude']
+    #         return {"latitude": latitude, "longitude": longitude}
+    #     else:
+    #         print(f"Failed to fetch location info for postcode: {postcode}")
+    #         return None
+        
     def process_referral_and_location_data(self, referral_modalities):
         for modality in referral_modalities:
             ref_data = pd.read_csv(os.path.join(self.data_folder, f"ReferralDummy_{modality}_GPCode_summary.csv"))
             cdc_data = pd.read_csv(os.path.join(self.data_folder, f"CDCReferralDummy_{modality}_GPCode_summary.csv"))
-                
+
             self.fulldata_subset = self.fulldata_subset.rename(columns={'CODE': 'Patient GP'})
-          
+
             gpsummary_referral_data = pd.merge(self.fulldata_subset, ref_data, on='Patient GP')
-            gpsummary_referral_data = pd.merge(gpsummary_referral_data, cdc_data, on='Patient GP', suffixes=('_Referrals_Baseline','_Referrals_CDC'))
-       
-            # Add location info to the merged data
-            gpsummary_referral_data["Latitude"] = None
-            gpsummary_referral_data["Longitude"] = None
-            
-            for index, row in gpsummary_referral_data.iterrows():
-                postcode = row["Postcode"]
-                location_info = self.get_lat_long(postcode)
-                if location_info is not None:
-                    gpsummary_referral_data.at[index, "Latitude"] = location_info['latitude']
-                    gpsummary_referral_data.at[index, "Longitude"] = location_info['longitude']
-                else:
-                    print(f"No location info for postcode: {postcode}")
-                    # Handle empty location_info if needed
-            
+            gpsummary_referral_data = pd.merge(gpsummary_referral_data, cdc_data, on='Patient GP', suffixes=('_Referrals_Baseline', '_Referrals_CDC'))
+
+            postcodes = gpsummary_referral_data['Postcode'].tolist()  # Get list of postcodes
+            batch_size = 100
+            for i in range(0, len(postcodes), batch_size):
+                batch_postcodes = postcodes[i:i + batch_size]  # Get a batch of 100 postcodes
+                location_info = self.get_lat_long(batch_postcodes)  # Get location info for this batch of postcodes
+                
+                # Add location info to the merged data for this batch
+                start_idx = i
+                end_idx = min(i + batch_size, len(postcodes))
+                gpsummary_referral_data.loc[start_idx:end_idx - 1, 'Latitude'] = location_info['latitude']
+                gpsummary_referral_data.loc[start_idx:end_idx - 1, 'Longitude'] = location_info['longitude']
+
             # Write the final CSV
             output_file = f'Stage2Outputs/GPSummaryReferralData_{modality}_Map.csv'
             gpsummary_referral_data.to_csv(output_file, index=False)
 
-    def get_lat_long(self, postcode):
-        try:
-            url = f"https://api.ordnancesurvey.co.uk/opennames/v1/find?query={postcode}&key={self.api_key}"
-            response = requests.get(url)
+    def get_lat_long(self, postcodes):
+        # Implement your batched API call here to fetch latitude and longitude based on the list of postcodes
+        # Use requests library or any suitable method to fetch the data in batches of 100
+        # Example:
+        batched_location_info = {"latitude": [], "longitude": []}
+        for i in range(0, len(postcodes), 100):
+            batch_postcodes = postcodes[i:i + 100]  # Get a batch of 100 postcodes
+            response = requests.post("https://api.postcodes.io/postcodes", json={"postcodes": batch_postcodes})
             if response.status_code == 200:
-                data = response.json()
-                if data['results']:
-                    return {
-                        'latitude': data['results'][0]['LAT'],
-                        'longitude': data['results'][0]['LONG']
-                    }
-                else:
-                    return None
+                location_data = response.json()
+                for result in location_data['result']:
+                    batched_location_info['latitude'].append(result['result']['latitude'])
+                    batched_location_info['longitude'].append(result['result']['longitude'])
             else:
-                print(f"Error fetching location for {postcode}. Status code: {response.status_code}")
-                return None
-        except Exception as e:
-            print(f"Error fetching location for {postcode}: {e}")
-            return None
-        
+                print("Failed to fetch location info for some postcodes in this batch")
+
+        return batched_location_info
+
     def process_GP_data(self):
         
             gp_location_data = pd.read_csv("Stage1Outputs/GPdata.csv")
