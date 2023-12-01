@@ -66,7 +66,7 @@ comparison_columns = merged_referral_file.iloc[:, 6:]
 
 st.subheader('Equity Audit', divider='grey')
 
-st.markdown("### Data Overview")
+st.markdown("#### Data Overview")
 
 # Read the value from the file or database
 with open("Stage1Outputs/user_local_authority.txt", "r") as f:
@@ -102,7 +102,7 @@ st.dataframe(data=styled_df, use_container_width=True)
 
 ## Data Strategy
 
-ethnicity_info = "Collection of ethnicity is essential in mapping health inequity. Please see the below links for more details on how to address issues ethnicity data quality. LINK 1"
+ethnicity_info = "Collection of ethnicity is essential in mapping health inequity. Please see the below links for more details on the importance of ethnicity recording and how to address issues of data quality."
 
 # Check if "Unknown" index exists in percentage_columns DataFrame
 if "Unknown" in percentage_columns.index:
@@ -111,16 +111,24 @@ if "Unknown" in percentage_columns.index:
     formatted_cdc_percentage = f"{cdc_unknown_percentage:.1f}%"
 
     # Display the sentence with the formatted percentage
+    st.markdown("#### Highlighting incomplete data")
     st.markdown(f"{formatted_cdc_percentage} of your CDC referrals do not have a usable {demographic} recorded. "
                 "This should be considered in your interpretation of results.")
 
+# Display links
     # Check for demographic and display additional information if it's "ethnicity"
     if demographic == "ethnicity":
         st.markdown(ethnicity_info)
+        st.markdown("""
+                    -	[Standards for ethnicity data, GOV.UK](https://www.gov.uk/government/consultations/standards-for-ethnicity-data/standards-for-ethnicity-data)
+                    -	[How do we collect good-quality data on race and ethnicity and address the trust gap? (Mathur et al, 2022)](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)02490-4/fulltext)
+                    -	[Recording ethnicity in primary care: assessing the methods and impact (Hull et al, 2011)](https://bjgp.org/content/61/586/e290)                
+                    -	[Measuring equality: A guide for the collection and classification of ethnic group, national identity and religion data in the UK. (ONS, 2021)](https://www.ons.gov.uk/methodology/classificationsandstandards/measuringequality/ethnicgroupnationalidentityandreligion)
+                    """)
 
 
 ## Making upper/lower graphs
-st.markdown("### Visualisation of difference")
+st.markdown("#### Visualisation of difference")
 
 st.markdown("The graph also displays the proportional difference in referrals. "
             "An increase in referrals from the comparator group (e.g. Population or baseline), i.e. 'more than expected', appears as blue. "
