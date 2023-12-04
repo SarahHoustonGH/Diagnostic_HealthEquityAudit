@@ -1,17 +1,17 @@
 ## HSMA 5 Health Equity Audit
 
-    ## Introduction to CDCs
+## Introduction to CDCs
 
-    Community diagnostic centres (CDCs) have been launched across England to tackle the diagnostic backlog and address healthcare inequalities. 
-    CDCs and commissioners struggle to identify their baseline of healthcare inequalities and monitor their impact going forwards. 
-    This leads to resourcing constraints on teams in the short term and risks minimising the CDC’s impact on healthcare inequalities in the long term. 
-    As these are emerging services, the quality of data collected by them to understand their impact is unclear. 
-    This product is designed to automate much of this process for a generic CDC to support CDCs in understanding their impact on a specific local authority.
+Community diagnostic centres (CDCs) have been launched across England to tackle the diagnostic backlog and address healthcare inequalities. 
+CDCs and commissioners struggle to identify their baseline of healthcare inequalities and monitor their impact going forwards. 
+This leads to resourcing constraints on teams in the short term and risks minimising the CDC’s impact on healthcare inequalities in the long term. 
+As these are emerging services, the quality of data collected by them to understand their impact is unclear. 
+This product is designed to automate much of this process for a generic CDC to support CDCs in understanding their impact on a specific local authority.
 
-    ## Introduction to project
+## Introduction to project
 
-    This code was developed as part of the Health Services Modelling Associates Programme Cohort 5 (HSMA5) by Sarah Houston and Deborah Newton.
-    There are two steps to this process, culminating in a Streamlit app which allows you to visualize results produced by Health Equity Audit for CDCs. Details on how to use the code are included below.
+This code was developed as part of the Health Services Modelling Associates Programme Cohort 5 (HSMA5) by Sarah Houston and Deborah Newton.
+There are two steps to this process, culminating in a Streamlit app which allows you to visualize results produced by Health Equity Audit for CDCs. Details on how to use the code are included below.
 
     ## User guide
     
