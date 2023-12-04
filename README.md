@@ -1,4 +1,4 @@
-## HSMA 5 Health Equity Audit
+# HSMA 5 Health Equity Audit
 
 Please note as of December 2023, this project and code is still under development.
 
