@@ -12,7 +12,7 @@ This product is designed to automate much of this process for a generic CDC to s
 
 ## Introduction to project
 
-This code was developed as part of the Health Services Modelling Associates Programme Cohort 5 (HSMA5 (https://arc-swp.nihr.ac.uk/training-type/health-service-modelling-associates-programme-hsma/)) by Sarah Houston and Deborah Newton.
+This code was developed as part of the Health Services Modelling Associates Programme Cohort 5 [HSMA5](https://arc-swp.nihr.ac.uk/training-type/health-service-modelling-associates-programme-hsma/)) by Sarah Houston and Deborah Newton.
 There are two steps to this process, culminating in a Streamlit app which allows you to visualize results produced by Health Equity Audit for CDCs. Details on how to use the code are included below.
 
 ## User guide
