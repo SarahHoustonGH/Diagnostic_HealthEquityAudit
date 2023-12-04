@@ -4,6 +4,7 @@ import pgeocode
 import logging 
 from geopy.geocoders import Nominatim
 import requests
+import time
 
 class ReferralMapping:
     def __init__(self):
@@ -80,6 +81,34 @@ class ReferralMapping:
     #     else:
     #         print(f"Failed to fetch location info for postcode: {postcode}")
     #         return None
+    
+    def get_lat_long(self, postcodes, max_retries=3):
+        batched_location_info = {"latitude": [], "longitude": []}
+        for i in range(0, len(postcodes), 100):
+            batch_postcodes = postcodes[i:i + 100]   # Get a batch of 100 postcodes
+            attempt = 0
+            while attempt < max_retries:
+                response = requests.post("https://api.postcodes.io/postcodes", json={"postcodes": batch_postcodes})
+                if response.status_code == 200:
+                    location_data = response.json()
+                    for result in location_data['result']:
+                        if 'result' in result and 'latitude' in result['result'] and 'longitude' in result['result']:
+                            batched_location_info['latitude'].append(result['result']['latitude'])
+                            batched_location_info['longitude'].append(result['result']['longitude'])
+                        else:
+                            print("Skipping incomplete data for some postcodes in this batch")
+                    break  # Exit the loop if successful
+                else:
+                    print(f"Failed to fetch location info for some postcodes in this batch. Retrying ({attempt + 1}/{max_retries})...")
+                    attempt += 1
+                    time.sleep(1)  # Wait for some time before retrying
+      
+        if batched_location_info is None:
+            print("No location information retrieved.")
+            return {"latitude": [], "longitude": []}  # Return empty lists as a default
+       
+        return batched_location_info
+
         
     def process_referral_and_location_data(self, referral_modalities):
         for modality in referral_modalities:
@@ -107,44 +136,42 @@ class ReferralMapping:
             output_file = f'Stage2Outputs/GPSummaryReferralData_{modality}_Map.csv'
             gpsummary_referral_data.to_csv(output_file, index=False)
 
-    def get_lat_long(self, postcodes):
-        # Implement your batched API call here to fetch latitude and longitude based on the list of postcodes
-        # Use requests library or any suitable method to fetch the data in batches of 100
-        # Example:
-        batched_location_info = {"latitude": [], "longitude": []}
-        for i in range(0, len(postcodes), 100):
-            batch_postcodes = postcodes[i:i + 100]  # Get a batch of 100 postcodes
-            response = requests.post("https://api.postcodes.io/postcodes", json={"postcodes": batch_postcodes})
-            if response.status_code == 200:
-                location_data = response.json()
-                for result in location_data['result']:
-                    batched_location_info['latitude'].append(result['result']['latitude'])
-                    batched_location_info['longitude'].append(result['result']['longitude'])
-            else:
-                print("Failed to fetch location info for some postcodes in this batch")
-
-        return batched_location_info
-
     def process_GP_data(self):
+        gp_location_data = pd.read_csv("Stage1Outputs/GPdata.csv")
+
+        # Filter out specific postcodes with known error
+        postcodes_to_filter = ['WA8 4NJ', 'L28 1ST']  # Replace these with the postcodes to filter out
+        gp_location_data = gp_location_data[~gp_location_data['POSTCODE'].isin(postcodes_to_filter)]
+
+        # Add location info to the merged data
+        postcodes_gp = gp_location_data['POSTCODE'].tolist()
         
-            gp_location_data = pd.read_csv("Stage1Outputs/GPdata.csv")
+        # Accumulate latitude and longitude values
+        batch_size_2 = 50
+        latitudes = []
+        longitudes = []
 
-            # Add location info to the merged data
-            postcodes = gp_location_data["POSTCODE"]
-            gp_location_data["Latitude"] = None
-            gp_location_data["Longitude"] = None
-            
-            for i, postcode in enumerate(postcodes):
-                location_info = self.nomi.query_postal_code(postcode)
-                if not location_info.empty:
-                    gp_location_data.at[i, "Latitude"] = location_info.latitude
-                    gp_location_data.at[i, "Longitude"] = location_info.longitude
-            
-            # Write the final CSV
-            output_file = (f'Stage2Outputs/GP_location_data.csv')
-            gp_location_data.to_csv(output_file, index=False)
+        for i in range(0, len(postcodes_gp), batch_size_2):
+            if i + batch_size_2 < len(postcodes_gp):
+                batch_postcodes_gp = postcodes_gp[i:i + batch_size_2]
+            else:
+                batch_postcodes_gp = postcodes_gp[i:]
 
-            print('Referral mapping complete. Please hold.')
+            location_info_gp = self.get_lat_long(batch_postcodes_gp)
+
+            latitudes.extend(location_info_gp['latitude'])
+            longitudes.extend(location_info_gp['longitude'])
+
+        # Assign accumulated lists to DataFrame columns
+        gp_location_data['Latitude'] = latitudes
+        gp_location_data['Longitude'] = longitudes
+
+        # Write to CSV after processing
+        output_file = "Stage2Outputs/GP_location_data.csv"
+        gp_location_data.to_csv(output_file, index=False)
+
+        print('Referral mapping complete. Please hold.')
+
 
 
 if __name__ == "__main__":
@@ -158,5 +185,5 @@ if __name__ == "__main__":
     
     referral_modalities = ["X", "U"]
     referral_mapping.process_referral_and_location_data(referral_modalities)
-    referral_mapping.process_GP_data()
+    #referral_mapping.process_GP_data()
 
