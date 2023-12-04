@@ -98,6 +98,20 @@ st.markdown(
     -	Expand analysis to more ethnic categories
     -	Include more intersectional analysis (e.g. age vs gender, ethnicity vs deprivation)
 
+    ### Data sources
+
+    Please see a list of data sources used in this code below.
+
+    | Data source             | Date accessed (if not accessed via code) | Link                                                          | Copyright                                   | Metrics used                                      |
+    |-------------------------|-----------------------------------------|---------------------------------------------------------------|----------------------------------------------|---------------------------------------------------|
+    | Census 2021             | Via code                                | [Census 2021](https://www.nomisweb.co.uk/sources/census_2021) | National Statistics data © Crown copyright and database rights 2023 | Age / Sex / Ethnicity                              |
+    | IMD 2019                | Via code                                | [IMD 2019](https://www.fscbiodiversity.uk/imd/)               | Copyright © 2023 Charles Roper                 | Calculated via the Field Studies Council "English IMD Postcode Checker" |
+    | Open Geography Portal, ONS | Aug-23                               | [Geography Portal](https://geoportal.statistics.gov.uk/datasets/766da1380a3544c5a7ca9131dfd4acb6/explore) | © Crown copyright                           | LSOA (Dec 2021) Boundaries Generalised Clipped EW (BGC) |
+    | Fingertips GP IMD       | Via code                                | [Fingertips GP IMD](https://fingertips.phe.org.uk/profile/general-practice/data#page/6/gid/2000005/pat/167/ati/7/are/H85026/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1) | © Crown copyright                           | GP weighted IMD                                    |
+    | Ideal Postcodes         | Via code                                | [Ideal Postcodes](https://postcodes.io/)                        | Postcodes.io                                | Postcode location                                  |
+    | NHS Data dictionary     | Aug-23                                  | [NHS Data dictionary](https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html) | © NHS England                           | NHS Ethnic Category look up                          |
+
+    ### 
     ### Contact us
     
     If you would like to learn more about the project or contact the team for further details, please email sarah.houston.16@ucl.ac.uk
