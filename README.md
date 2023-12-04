@@ -14,7 +14,7 @@ This code was developed as part of the Health Services Modelling Associates Prog
 There are two steps to this process, culminating in a Streamlit app which allows you to visualize results produced by Health Equity Audit for CDCs. Details on how to use the code are included below.
 
 ## User guide
-    
+
 ### Data required
 
 Dummy data is included in the Github repository for demo purposes. This data has been generated randomly and bears no relation to real referral data but may refer to a local authroity which has a CDC.
