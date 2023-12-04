@@ -101,23 +101,17 @@ class Datasummariser:
         ## Merge referral file with IMD file and return it
         self.mergedata = pd.merge(self.data, self.PostcodeIMD, on='Postcode')
 
-        print("Combined1")
-
         #Merge referral file and LUT to match for ethnicity code
         self.fulldata = pd.merge(self.mergedata, self.Ethnicity_LUT, on='Ethnicity_Code')
 
-        print("Combined2")
-
         self.modalities = self.fulldata['Modality'].unique()
-
-        print("3")
 
         summary_table = pd.DataFrame()
 
         for modality in self.modalities:
                modality_data = self.fulldata[self.fulldata["Modality"] == modality]
-            
-               print("4")
+
+               pd.options.mode.chained_assignment = None 
 
                #add an age bracket column to data
                modality_data['Age_range'] = pd.cut(modality_data['Age'], 
@@ -155,7 +149,7 @@ class Datasummariser:
         #Write merged data to another file for future use
         self.fulldata.to_csv(f"Stage1Outputs/{output_prefix[5:]}_Merged.csv", index=False)
 
-        print("Complete")
+        print("Referral summariser complete. Please hold.")
 
 
 

@@ -29,7 +29,7 @@ class CensusSummariser:
                 f.write(age_sex_response.content)
         else:
             print(f"Failed to download age-sex CSV data. Status code: {age_sex_response.status_code}")
-    print("Age/sex saving complete")
+    print("Age/sex data saved")
 
     # Downloads the ethnicity Census 2021 data by local authority
     def download_ethnicity_csv(self):
@@ -43,7 +43,7 @@ class CensusSummariser:
                 f.write(response.content)
         else:
             print(f"Failed to download ethnicity CSV data. Status code: {response.status_code}")
-    print("Ethnicity saving complete")
+    print("Ethnicity data saved")
 
 
     def summarise_age_sex_csv(self):
@@ -74,7 +74,7 @@ class CensusSummariser:
         self.sex_data_clean.to_csv(self.sex_clean_csv_filename)
 
         return self.age_data_clean, self.sex_data_clean, self.age_sex_data_clean
-    print("data check")
+    print("Age and sex Census data summarised")
 
     #Summarise based on LA
     def summarise_by_la(self, local_authority):
@@ -117,7 +117,7 @@ class CensusSummariser:
         #eth_summary_granular.to_csv('Stage1Outputs/Census_ethnicity_granular_summary_'+ local_authority +'.csv')
         
         return age_summary, sex_summary, eth_summary, age_sex_pivot_table
-    print('Census data filtered')
+    print('Census data filtered. Census summariser complete. Please hold.')
 
 
 if __name__ == "__main__":

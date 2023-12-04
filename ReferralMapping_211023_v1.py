@@ -144,6 +144,8 @@ class ReferralMapping:
             output_file = (f'Stage2Outputs/GP_location_data.csv')
             gp_location_data.to_csv(output_file, index=False)
 
+            print('Referral mapping complete. Please hold.')
+
 
 if __name__ == "__main__":
     referral_mapping = ReferralMapping()

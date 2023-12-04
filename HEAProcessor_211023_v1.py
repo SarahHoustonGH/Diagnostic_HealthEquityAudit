@@ -43,6 +43,7 @@ class HEAProcessor:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
 
                 merged_df.to_csv(f"Stage2Outputs/Merged_{modality}_{demographic}.csv", index=False)
+            print('Referral data for HEA combined')
 
     # Function to create IMD table for local authority
     def process_gp_IMD_data(self, user_local_authority):
@@ -75,6 +76,7 @@ class HEAProcessor:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
 
             merged_df.to_csv(f"Stage2Outputs/Merged_{modality}_GP_IMD.csv", index=False)
+        print('Referral data per GP for HEA combined')
 
     # Function to create IMD table for local authority
     def process_pop_IMD_data(self, user_local_authority):
@@ -109,7 +111,7 @@ class HEAProcessor:
                     merged_df[column + '_percentage'] = (merged_df[column] / merged_df[column].sum()) * 100
 
             merged_df.to_csv(f"Stage2Outputs/Merged_{modality}_Pop_IMD.csv", index=False)
-
+        print('HEA Processor complete. End of Step 1. Please use the Streamlit app to visualise results.')
 
 
 if __name__ == "__main__":
