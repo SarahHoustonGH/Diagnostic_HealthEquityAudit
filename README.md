@@ -1,5 +1,7 @@
 ## HSMA 5 Health Equity Audit
 
+Please note as of December 2023, this project and code is still under development.
+
 ## Introduction to CDCs
 
 Community diagnostic centres (CDCs) have been launched across England to tackle the diagnostic backlog and address healthcare inequalities. 
