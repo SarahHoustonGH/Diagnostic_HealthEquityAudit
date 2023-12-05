@@ -94,7 +94,8 @@ folium.Choropleth(
                   fill_color ='YlGnBu',      
                   fill_opacity = 0.5,
                   legend_name='IMD',
-                  highlight=True).add_to(m)
+                  highlight=True,
+                  line_color = 'grey').add_to(m)
 
 
 #Read in the GP location data to be displayed on the LSOA map
@@ -105,7 +106,7 @@ for (index, row) in df_lsoa_imd.iterrows():
                      #is {row.loc['Postcode']}"
     folium.Circle(location=[row.loc['Latitude'], row.loc['Longitude']],
                   #radius=1000,  # Adjust the radius as needed,
-                  radius = row.loc["Count_Referrals_CDC"]*2,
+                  radius = row.loc["Count_Referrals_CDC"]*1.5,
                   fill = True,
                   fill_opacity = 0.9,
                   color = 'black',
@@ -146,7 +147,8 @@ folium.Choropleth(
                   fill_color ='YlGnBu',      
                   fill_opacity = 0.5,
                   legend_name='IMD',
-                  highlight=True).add_to(m2)
+                  highlight=True,
+                  line_color = 'grey').add_to(m2)
 
 # Read in all GP data for region
 allGPdata =  pd.read_csv(f"Stage2Outputs\GP_location_data.csv")
@@ -163,9 +165,10 @@ for (index, row) in practicereferralmap.iterrows():
                   radius=100,  # Adjust the radius as needed,
                   fill = True,
                   fill_opacity = 1,
-                  color = color,
-                  popup=pop_up_text, 
-                  tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_CDC']} referrals").add_to(m2)
+                  color = color).add_to(m2)
+                  #popup=pop_up_text, 
+                  #tooltip=f"{row.loc['GP practice name']} sent {row.loc['Count_Referrals_CDC']} referrals")
+                  
     
 folium_static(m2)
 
