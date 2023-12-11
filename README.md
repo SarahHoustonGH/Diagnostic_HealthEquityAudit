@@ -51,7 +51,7 @@ At this stage, the user also inputs the local authority of interest. This will b
 
 #### Step 2: Display
 
-- Run the HEA_Streamlit2 file through Anaconda
+- Run the HEA_Streamlit_Home file
 - The summary outputs from Step 1 will be used to build content for display in Streamlit
 
 Due to the unique nature of CDCs which would be expected to host multiple diagnostic modalities, 
