@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-os.chdir("C:\\Users\\sarah.houston\\OneDrive - UCLPartners\\Other\\Desktop\\Mapping")
+os.chdir("YOUR PATH")
 
 #Read in all weighted IMD scores using Fingertips API
 GP_Weighted_IMD_Scores = ftp.retrieve_data.get_data_by_indicator_ids("93553", area_type_id=7, parent_area_type_id=None, profile_id=21, include_sortable_time_periods=None, is_test=False)
