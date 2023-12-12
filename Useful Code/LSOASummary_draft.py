@@ -19,7 +19,7 @@ import requests
 import numpy as np
 
 # set wd
-os.chdir('C:\\Users\\sarah.houston\OneDrive - UCLPartners\\Other\\Desktop\\Project - Code Building')
+#os.chdir("YOUR PATH")
 
 # pull in the datasets
 
