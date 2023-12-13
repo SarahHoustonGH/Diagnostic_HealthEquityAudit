@@ -27,13 +27,14 @@ To use this code, the following is required:
 -	Both data must at a minimum contain fields as described below
 
 The matched baseline service could be a local acute diagnostic service operating in the year before the introduction of the CDC.
-Fields required:
+
+The following fields are required in the baseline and CDC referral data:
 -	Referral Source: Name of GP practice
 -	Modality: Diagnostic modality. This version of the code supports X (x ray) and U (ultrasound)
 -	Patient GP: GP registration code
 -	Age: Age in years
 -	Patient_Gender: Male, Female or Unknown
--	Ethnicity_Code: NHS ethnic category (e.g. A)
+-	Ethnicity_Code: [NHS Ethnic Category](https://www.datadictionary.nhs.uk/data_elements/ethnic_category.html) (e.g. A)
 -	Ethnicity Description: Full description of code (e.g. White British)
 -	Postcode: GP location postcode
 
@@ -61,15 +62,15 @@ provisional modalities of X ray and ultrasound have been included for disaggrega
 
 1.	Gender is equated with sex in the analysis due to disparities in definition between NHS and Census data, potentially overlooking nuanced gender-related disparities.
 2.	Index of Multiple Deprivation data based on GP location (GP_IMD) assumes patients are exclusively from that Lower Super Output Area (LSOA). Population weighted IMD (Pop_IMD) has been extracted from Fingertips (ONS).
-3.	GP location data has been extracted from a publication by NHS Digital from 
+3.	GP location data has been extracted from a [publication](https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice) by NHS Digital from July 2023. This may not reflect current practice location.
 4.	GP location was based on registered practice location, which does not reflect branch practices.
 5.	Data from other diagnostic services in the region is not included in the analysis. This means we are unable to determine if the CDC is effectively addressing health inequalities or merely shifting care between services in the region.
-6.	This analysis does not attempt to quantify "unmet need", patients who should access diagnostics but do not. 
+6.	This analysis does not attempt to quantify "unmet need", patients who should access diagnostics but do not, due to the non-specific nature of CDCs.
 7.	This analysis assumes that the CDC should be a general service equally accessed by all demographic groups due to the diverse modalities and conditions it serves, however some services may be weighted towards specific groups, e.g. older patients.
 8.	Potential barriers to access, such as language and disability, are not explored due to lack of data availability, limiting the understanding of disparities related to these factors.
 9.	Intersectional analysis is not included in this analysis but may be beneficial due to the nuanced interactions between multiple factors that contribute to healthcare inequalities.
 10.	Equity audits should also consider not just quantitative analysis such as presented here but also include qualitative engagement with local communities to understand potential barriers in referral and access.
-11.	Broad ethnic categories are used to describe populations in this project, however ethnic and cultural diversity cannot be described by broad ethnic categories alone. Broad ethnic categories were chosen for accurate mapping between the NHS Ethnic Category to Ethnic Group as recorded by the ONS in the Census.
+11.	Broad ethnic categories are used to describe populations in this project, however ethnic and cultural diversity cannot be described by broad ethnic categories alone. Broad ethnic categories were chosen for accurate mapping between the NHS Ethnic Category to Ethnic Group as recorded by the ONS in the Census, but the code is still under development with aspiration to expand to granular ethnicity data.
 12.	This project focusses on equity of referrals, however increasing referrals to diagnostics is only the first step to improving health outcomes in the region. Similar analysis should be performed to explore access (i.e. attendances), experience and outcomes across different demographic cohorts.
 
 ### Next steps
@@ -80,7 +81,7 @@ This project is still under development as of December 2023. Potential next step
 -	Combine Step 1 (Processing, Python) with Step 2 (Display, Streamlit) to one user interface
 -	Expand “base population” to include more than one local authority
 -	Include data to highlight rural/urban disparities of referral
--	Expand analysis to more ethnic categories
+-	Expand analysis to more ethnic categories and granular ethnicities
 -	Include more intersectional analysis (e.g. age vs gender, ethnicity vs deprivation)
 
 ### Data sources
