@@ -1,6 +1,6 @@
 # HSMA 5 Health Equity Audit
 
-Please note as of December 2023, this project and code is still under development.
+Please note as of December 2023, this project and code is still under development. There is an ongoing issue with a large JSON file currently not uploading to Github. For access to this file, please contact the team at sarah.houston.16@ucl.ac.uk
 
 ## Introduction to CDCs
 
